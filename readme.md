@@ -16,7 +16,7 @@ Dans cette phase exploratoire, par rapport à des outils de visualisation tels q
 
 ## Commit
 
-Lors d'un comit, certains notebooks pouvant être trop volumineux, il peut être nécessaire 
+Lors d'un commit, certains notebooks pouvant être trop volumineux, il peut être nécessaire d'effacer les résultats obtenus après execution des cellules.
 
 ## Investigation
 
