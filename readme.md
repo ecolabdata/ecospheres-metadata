@@ -46,38 +46,37 @@ Lien entre vocabulaires contrôlés, filtres et indexations par le moteur de rec
 
 Métadonnées et vocabulaires contrôlés dans Ecosphères (list non exhaustive, [voir schéma complet](https://github.com/ecolabdata/ckanext-ecospheres/blob/main/ckanext/ecospheres/scheming/ecospheres_dataset_schema.yaml)).
 
-|Catégorie            |Métadonnées   | Vocabulaires Contrôlés |
-|:--                 |:--          |:--                     |
-|**Métadonnées thématiques** | title | |
-|                     | notes | |
-|                     | category | ecospheres_themes |
-|                     | theme | inspire_theme, inspire_topic_category, eu_theme |
-|                     | free_tags | |
-|                     | attribute_pages | |
-|**Métadonnées géographiques**| bbox | |
-|                       | crs | |
-|                       | spatial_coverage | |
-|                       | spatial | |
-|                       | territory | |
-|                       | spatial_resolution | |
-|                       | equivalent_scale | |
-|**Métadonnées temporelles**| temporal | |
-|                     | modified | |
-|                     | created | |
-|                     | issued | |
-|                     | accrual_periodicity | inspire_maintenance_frequency, eu_frequency |
-|                     | temporal_resolution ||
-|**Accès et utilisation**| restricted_access | |
-|                     | rigths | |
-|                     | conforms_to | plume_data_service_standard |
-|                     | license | eu_licence, spdx_license, adms_licence_type |
-|                     | status | eu_dataset_status, adms_status, iso19139_progress_code |
-|**Généalogie**| contact_point | |
-|                     | publisher | |
-|                     | creator | |
-|                     | qualified_attribution |  |
-|                     | version |  |
-|                     | version_notes |  |
-|                     | provenance |  |
-
-
+|Catégorie            |Métadonnées[CKAN] | Vocabulaires Contrôlés | Definition |
+|:--                 |:--          |:--                     |:--                     |
+|**Métadonnées thématiques** | title | | Libellé du jeu de données. |
+|                     | notes | | Description du jeu de données. |
+|                     | category | ecospheres_themes | Thèmes (et sous-thèmes) de la nomenclature du guichet, déduit de "theme", "subject" et "free_tag" lors du moissonnage, stockage sous forme d'une liste d'URI (appartenant au registre du guichet). |
+|                     | theme | inspire_theme, inspire_topic_category, eu_theme | Thèmes des nomemclatures externes, notamment celle de la commission européenne et la nomenclature INSPIRE, mapper dct:subject vers cette propriété (utilisé dans GeoDCAT-AP v2 pour les catégories ISO), stockage sous la forme d'une liste d'URI.
+|                     | free_tags | | Mots-clés libres. |
+|                     | attribute_pages | | Lien de la page où sont décrits les champs du jeu de données. |
+|**Métadonnées géographiques**| bbox | | Rectangle d'emprise. Stockage et exposition sous forme de littéral GML ou WKT, comme il convient pour cette propriété, calculé à partir de "spatial" pour les métadonnées INSPIRE |
+|                       | crs | | Pour les référentiels de coordonnées, stockage et exposition sous forme d'une liste d'URI, affichage de l'étiquette, récupérée en interrogeant l'URI. |
+|                       | spatial_coverage | | Couverture géographique, territoires sur lesquels portent les données, le champ "uri" correspond à l'objet du triplet <...> dct:spatial <uri>, s'il n'est pas défini, l'exposition utilise un noeud anonyme de classe dct:Location  |
+|                       | spatial | | Rectangle d'emprise, utilisé par ckanext-spatial pour la prévisualisation cartographique, non exposé en DCAT, stockage sous la forme d'un dump GeoJSON (cf. http://docs.ckan.org/projects/ckanext-spatial/en/latest/spatial-search.html#geo-indexing-your-datasets), calculé à partir de "bbox" (propriété de "spatial_coverage") pour, les métadonnées DCAT.
+|                       | territory | | Divisions administratives (régions, départements...) présumées couvertes par les données, non repris dans l'export DCAT (hormis pour les   informations mappées depuis la propriété "spatial"), utilisé uniquement pour le filtrage par territoire, déduit de "spatial" si possible, à défaut du territoire de compétence de l'organisation, stockage sous la forme d'une liste d'URI. |
+|                       | spatial_resolution | | Plus petite distance significative dans le contexte du jeu de données, exprimée en mètres. |
+|                       | equivalent_scale | | Non exposé, permet uniquement de conserver cette information présente dans les métadonnées INSPIRE et sur la base de laquelle "spatial_resolution" est calculé. |
+|**Métadonnées temporelles**| temporal | | Périodes décrites par le jeu de données.|
+|                     | modified | | Date de dernière modification du jeu de données. |
+|                     | created | | Date de création du jeu de données. |
+|                     | issued | | Date de publication du jeu de données. |
+|                     | accrual_periodicity | inspire_maintenance_frequency, eu_frequency | Fréquence de mise à jour, stockage et exposition sous forme d'URI, affichage de l'étiquette récupérée par interrogation de l'URI. |
+|                     | temporal_resolution || Plus petit pas de temps significatif dans le contexte du jeu de données, stockage et exposition sous forme standardisée (ex: 'P2HT30M' pour 2h30). |
+|**Accès et utilisation**| restricted_access | | Donnée à accès restreint, non exposé dans l'export DCAT, utilisé pour l'élément "Données ouvertes / Accès restreint", booléen déduit de access_rights. |
+|                     | access_rigths | | Contraintes réglementaires limitant l'accès au jeu de données. |
+|                     | rights_holder | | Organisme ou personne qui détient des droits sur les données. |
+|                     | conforms_to | plume_data_service_standard | Standard, schéma, etc. auquel se conforment les données. |
+|                     | license | eu_licence, spdx_license, adms_licence_type | Calculé à partir des champs "license" des ressources. Champs CKAN hors DCAT. |
+|                     | status | eu_dataset_status, adms_status, iso19139_progress_code | Maturité, stockage et exposition sous forme d'URI, affichage de l'étiquette récupérée par interrogation de l'URI. |
+|**Généalogie**| contact_point | | Entité à contacter pour obtenir des informations sur les données.|
+|                     | publisher | | Organisme ou personne qui assure la publication des données. |
+|                     | creator | | Principal responsable de la production des données. |
+|                     | qualified_attribution |  | Organisme qui est intervenu ou exerce une responsabilité sur les données. |
+|                     | version |  | Version ou millésime du jeu de données. |
+|                     | version_notes |  | Différences entre la version courante des données et les versions antérieures. |
+|                     | provenance |  | Informations sur les sources et méthodes de production des données. |
