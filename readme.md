@@ -46,7 +46,7 @@ Lien entre vocabulaires contrôlés, filtres et indexations par le moteur de rec
 
 Métadonnées et vocabulaires contrôlés dans Ecosphères (list non exhaustive, [voir schéma complet](https://github.com/ecolabdata/ckanext-ecospheres/blob/main/ckanext/ecospheres/scheming/ecospheres_dataset_schema.yaml)).
 
-|Catégorie            |Métadonnées[CKAN] | Vocabulaires Contrôlés | Definition |
+|            |Métadonnées[CKAN] | Vocabulaires Contrôlés | Definition |
 |:--                 |:--          |:--                     |:--                     |
 |**Métadonnées thématiques** | title | | Libellé du jeu de données. |
 |                     | notes | | Description du jeu de données. |
