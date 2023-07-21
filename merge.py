@@ -20,7 +20,7 @@ def main():
     )
 
     notebooks = []
-    for notebook in glob.glob("[0-9][0-8]*.ipynb"):
+    for notebook in glob.glob("[0-9][0-9]*.ipynb"):
         print(notebook)
         notebooks.append(nbformat.read(notebook, as_version=4))
 
