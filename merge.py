@@ -32,7 +32,17 @@ def main():
 
     engine = sqlalchemy.create_engine(database_url)
     environment_tag = get_environment_tag(engine.url.host, engine.url.database)
+    
     nbformat.write(metadata_report, "metadata_report.ipynb".format(environment_tag))
+    
+    subprocess.run(
+        [
+            "jupyter",
+            "trust",
+            "metadata_report.ipynb",
+        ]
+    )
+        
     output = "{}.html".format(environment_tag)
 
     subprocess.run(
