@@ -6,8 +6,6 @@ def apply_itable_custom_settings():
     vie the show function.
     """
     
-    init_notebook_mode(all_interactive=False, connected=True)
-
     opt.lengthMenu = [5, 10]
     opt.style = 'table-layout:auto;width:auto;margin:auto;caption-side:bottom'
     opt.classes = 'display compact'
