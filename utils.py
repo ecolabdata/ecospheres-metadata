@@ -23,7 +23,7 @@ def compute_areas_km2(geoms: gpd.GeoSeries) -> gpd.GeoSeries:
     else:
         return geoms.apply(lambda x: x.area * 1e-6)
 
-
+# Prefeference for itables.show
 def head_as_table(data: pd.DataFrame, n_rows: int = 1, index=False) -> None:
     """Pretty-print the head of a Pandas table in a Jupyter notebook and show its dimensions."""
     display(

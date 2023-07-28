@@ -1,6 +1,5 @@
 from itables import init_notebook_mode
 import itables.options as opt
-from itables import show
 
 def apply_itable_custom_settings():
     """ Allows interactive dataframe presentation
