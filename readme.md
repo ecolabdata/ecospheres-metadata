@@ -15,12 +15,9 @@ L'observation des métadonnées est réalisée à partir de notebooks Jupyter. P
 Dans cette phase exploratoire, par rapport à des outils de visualisation tels qu'Apache Superset, cette approche tire profit de la flexibilité des librairies Python pour le traitement des données et de l'ergonomie des notebooks pour documenter la démarche tout en permettant la visualisation des résultats sous forme de diagrammes interactifs.
 
 AVERTISSEMENTS :  
-- @TODO: le recours à des versions de *nbconvert* supérieures à la version 7.2.10 s'est révéler infructeux pour la génération des slides  
+- @TODO: le recours à des versions de *nbconvert* supérieures à la version 7.2.10 s'est révélé infructeux pour la génération des slides  
 - Privilégier le navigateur mozzila firefox pour la lecture du rapport, veiller à vide le cache.
-
-## Commit
-
-Certains notebooks pouvant être volumineux, il est conseillé d'effacer systématiquement les résultats obtenus après execution des cellules et génération du rapport .html avant avant de réaliser de commit. 
+- Certains notebooks pouvant être volumineux, il est conseillé d'effacer systématiquement les résultats obtenus après execution des cellules et génération du rapport .html avant de réaliser de commit. 
 
 ## Investigation
 
