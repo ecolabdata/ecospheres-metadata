@@ -6,7 +6,7 @@ Le catalogue Ecosphères a pour vocation de faciliter l'identification sur chaqu
 
 Les métadonnées recueillies par le POC CKAN Ecosphères à partir des [points de moissonnage](https://github.com/ecolabdata/guichetdonnees-public/blob/main/moissonnages.json) sont à la base de ces observations. Les métadonnées sur les jeux de données sont entreposés dans les tables `package` et `package_extra` de la [base de données CKAN](https://boykoc.github.io/ckan/2019/10/21/ckan-283-database-diagram.html), également disponibles par API suivant le [schéma Ecosphères](https://github.com/ecolabdata/ckanext-ecospheres/blob/main/ckanext/ecospheres/scheming/ecospheres_dataset_schema.yaml) DCAT compatible.
 
-Nous tâcherons d'évaluer en quoi la qualité des métadonnées disponibles ainsi que les fonctionnalités de requête des plateformes impactent la découverte des données mais également la capacité de maintenir un ensemble de jeux de données (actualisation, suivi de l'interopérabilité, enrichissement). Enfin, au-delà des seules considérations sur la découvrabilité, nous nous intéresserons à des problématiques propres aux moissonnages telles que l'identification a posteriori de doublons, de données obsolètes ou encore la sensibilité du périmètre des jeux de données moissonnés aux paramètres des filtres CSW.
+Nous tâcherons d'évaluer en quoi la qualité des métadonnées disponibles ainsi que les fonctionnalités de requête des plateformes impactent la découverte des données mais également la capacité de maintenir un ensemble de jeux de données (actualisation, suivi de l'interopérabilité, enrichissement).
 
 ## Rapport HTML
 
@@ -14,9 +14,13 @@ L'observation des métadonnées est réalisée à partir de notebooks Jupyter. P
 
 Dans cette phase exploratoire, par rapport à des outils de visualisation tels qu'Apache Superset, cette approche tire profit de la flexibilité des librairies Python pour le traitement des données et de l'ergonomie des notebooks pour documenter la démarche tout en permettant la visualisation des résultats sous forme de diagrammes interactifs.
 
+AVERTISSEMENTS :  
+- @TODO: le recours à des versions de *nbconvert* supérieures à la version 7.2.10 s'est révéler infructeux pour la génération des slides  
+- Privilégier le navigateur mozzila firefox pour la lecture du rapport, veiller à vide le cache.
+
 ## Commit
 
-Lors d'un commit, certains notebooks pouvant être trop volumineux, il peut être nécessaire d'effacer les résultats obtenus après execution des cellules.
+Certains notebooks pouvant être volumineux, il est conseillé d'effacer systématiquement les résultats obtenus après execution des cellules et génération du rapport .html avant avant de réaliser de commit. 
 
 ## Investigation
 
