@@ -5,8 +5,6 @@ import configparser
 import os
 from utils import get_environment_tag
 import subprocess
-import argparse
-
 
 def main():
     config = configparser.ConfigParser()
@@ -23,7 +21,7 @@ def main():
     for notebook in glob.glob("[0-9][0-9]*.ipynb"):
         print(notebook)
         notebooks.append(nbformat.read(notebook, as_version=4))
-
+        
     metadata_report = nbformat.v4.new_notebook(metadata=notebooks[0].metadata)
     metadata_report.cells = notebooks[0].cells
     for i, notebook in enumerate(notebooks):
