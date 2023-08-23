@@ -61,8 +61,8 @@ def main():
     )
 
     # Add date and environment tags in slides
-    with open(environment_tag + ".slides.html", 'r',  encoding="utf8") as f:
-        report_html = f.read()
+    with open(environment_tag + ".slides.html", 'r',  encoding="utf8") as file:
+        report_html = file.read()
     
     soup = BeautifulSoup(report_html, 'html.parser')
     soup.find(id="header_left").string.replace_with(datetime.today().strftime('%Y-%m-%d'))
