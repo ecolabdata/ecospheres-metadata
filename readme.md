@@ -15,7 +15,11 @@ Dans cette phase exploratoire, par rapport à des outils de visualisation tels q
 AVERTISSEMENTS :  
 - @TODO: le recours à des versions de *nbconvert* supérieures à la version 7.2.10 s'est révélé infructeux pour la génération des slides  
 - Privilégier le navigateur mozzila firefox pour la lecture du rapport, veiller à vide le cache.
-- Certains notebooks pouvant être volumineux, il est conseillé d'effacer systématiquement les résultats obtenus après execution des cellules et génération du rapport .html avant de procéder à un commit. 
+- Certains notebooks pouvant être volumineux, il est conseillé d'effacer systématiquement les résultats obtenus après execution des cellules et génération du rapport .html avant de procéder à un commit.
+
+## Exrernal
+
+Il a été jugé utile de réutiliser certaines classes développées dans le répertoire [ckanext-ecospheres](https://github.com/ecolabdata/ckanext-ecospheres). Ce dernier a été cloné dans le dossier *external*.
 
 ## Investigation
 
