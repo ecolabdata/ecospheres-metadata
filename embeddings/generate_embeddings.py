@@ -1,6 +1,6 @@
 import pandas as pd
 import pickle
-from utils import wrapper_engine
+from utils.utils import wrapper_engine
 
 engine = wrapper_engine(config='config.ini')
 

@@ -3,7 +3,7 @@ import glob
 import sqlalchemy
 import configparser
 import os
-from utils import get_environment_tag
+from utils.utils import get_environment_tag
 import subprocess
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -17,10 +17,7 @@ def __execute():
     notebooks are pushed.
     """
     
-    # notebooks = []
     for notebook in glob.glob("[0-9][0-9]*.ipynb"):
-        # notebooks.append(nbformat.read(notebook, as_version=4))        
-    # for notebook in notebooks:
         output_notebook = "temp/" + str(notebook)
         print("Execute " + notebook)
         try:
