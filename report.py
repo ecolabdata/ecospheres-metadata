@@ -18,7 +18,7 @@ def __execute():
     """
     
     for notebook in glob.glob("[0-9][0-9]*.ipynb"):
-        output_notebook = "temp/" + str(notebook)
+        output_notebook = "tmp/" + str(notebook)
         print("Execute " + notebook)
         try:
             pm.execute_notebook(notebook, output_notebook)
@@ -30,7 +30,7 @@ def __generate():
     reveal.js slides.
     """    
     notebooks = []
-    for notebook in glob.glob("temp/[0-9][0-9]*.ipynb"):
+    for notebook in glob.glob("tmp/[0-9][0-9]*.ipynb"):
         print(notebook)
         notebooks.append(nbformat.read(notebook, as_version=4))
         
@@ -53,13 +53,13 @@ def __generate():
     
     engine = sqlalchemy.create_engine(database_url)
     environment_tag = get_environment_tag(engine.url.host, engine.url.database)
-    nbformat.write(metadata_report, "temp/metadata_report.ipynb".format(environment_tag))
+    nbformat.write(metadata_report, "tmp/metadata_report.ipynb".format(environment_tag))
     
     subprocess.run(
         [
             "jupyter",
             "trust",
-            "temp/metadata_report.ipynb",
+            "tmp/metadata_report.ipynb",
         ]
     )
     # Convert notebooks to revealjs slides    
@@ -67,7 +67,7 @@ def __generate():
         [
             "jupyter",
             "nbconvert",
-            "temp/metadata_report.ipynb",
+            "tmp/metadata_report.ipynb",
             "--to",
             "slides",
             "--output-dir",
@@ -93,7 +93,7 @@ def __generate():
         file.write(soup.prettify("utf-8"))
         
     # Delete temporary file
-    os.remove("temp/metadata_report.ipynb")
+    os.remove("tmp/metadata_report.ipynb")
     
 if __name__ == "__main__":
     
