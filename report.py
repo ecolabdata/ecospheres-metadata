@@ -11,15 +11,28 @@ import argparse
 import papermill as pm
 import os
 
-def __execute():
+def __execute(notebook:str="all"):
     """ Execute available notebooks from the rootfolder and save
     resutling outputs in the temp folder. Only output-clear
     notebooks are pushed.
+    
+    PARAMETER
+    ---------
+        report: specify a report to be executed, else execute them all.
+    
     """
     
-    for notebook in glob.glob("[0-9][0-9]*.ipynb"):
-        output_notebook = "tmp/" + str(notebook)
+    if notebook=='all':
+        for notebook in glob.glob("[0-9][0-9]*.ipynb"):
+            output_notebook = "tmp/" + str(notebook)
+            print("Execute " + notebook)
+            try:
+                pm.execute_notebook(notebook, output_notebook)
+            except Exception as exception:
+                print(f"Exception: {exception}")
+    else:
         print("Execute " + notebook)
+        output_notebook = "tmp/" + str(notebook)
         try:
             pm.execute_notebook(notebook, output_notebook)
         except Exception as exception:
@@ -99,12 +112,13 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument('--execute', default=False)
+    parser.add_argument('--notebook', default='all')
     parser.add_argument('--generate', default=False)
     
     args = parser.parse_args()
     
     if args.execute:
-        __execute()
+        __execute(args.notebook)
         
     if args.generate:
         __generate()
