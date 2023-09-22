@@ -23,7 +23,7 @@ def __execute(notebook:str="all"):
     """
     
     if notebook=='all':
-        for notebook in glob.glob("[0-9][0-9]*.ipynb"):
+        for notebook in sorted(glob.glob("[0-9][0-9]*.ipynb")):
             output_notebook = "tmp/" + str(notebook)
             print("Execute " + notebook)
             try:
@@ -43,7 +43,7 @@ def __generate():
     reveal.js slides.
     """    
     notebooks = []
-    for notebook in glob.glob("tmp/[0-9][0-9]*.ipynb"):
+    for notebook in sorted(glob.glob("tmp/[0-9][0-9]*.ipynb")):
         print(notebook)
         notebooks.append(nbformat.read(notebook, as_version=4))
         
