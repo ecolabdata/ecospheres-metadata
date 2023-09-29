@@ -2,9 +2,9 @@
 
 ## Enjeux
 
-Le catalogue Ecosphères a pour vocation de faciliter l'identification sur chaque territoire des données utiles à l'appui des politiques publiques (diagnostic, planificaiton, suivi). Dans le cadre de ces observations, nous nous intéressons au potentiel de priorisation des données remontées lors d'une recherche à partir des métadonnées disponibles au regard de critères thématiques, géographiques, temporels, d'accès à la donnée et enfin de fiabilité. Nous nous appuierons sur une sélection de métadonnées parmi les champs décrits dans des documents de références tels que la documentation du profile [GeoDCAT-AP](https://semiceu.github.io/GeoDCAT-AP/releases/) et le guide de saisie des éléments de métadonnées [INSPIRE](https://semiceu.github.io/GeoDCAT-AP/releases/).
+Le catalogue Ecosphères a pour vocation de faciliter l'identification sur chaque territoire des données utiles à l'appui des politiques publiques (diagnostic, planificaiton, suivi). Dans le cadre de ces observations, nous nous intéressons à la qualification des données remontées lors d'une recherche à partir des métadonnées disponibles. Nous nous appuierons sur une sélection de métadonnées parmi les champs décrits dans des documents de références tels que la documentation du profile [GeoDCAT-AP](https://semiceu.github.io/GeoDCAT-AP/releases/) et le guide de saisie des éléments de métadonnées [INSPIRE](https://semiceu.github.io/GeoDCAT-AP/releases/).
 
-Les métadonnées recueillies par le POC CKAN Ecosphères à partir des [points de moissonnage](https://github.com/ecolabdata/guichetdonnees-public/blob/main/moissonnages.json) sont à la base de ces observations. Les métadonnées sur les jeux de données sont entreposés dans les tables `package` et `package_extra` de la [base de données CKAN](https://boykoc.github.io/ckan/2019/10/21/ckan-283-database-diagram.html), également disponibles par API suivant le [schéma Ecosphères](https://github.com/ecolabdata/ckanext-ecospheres/blob/main/ckanext/ecospheres/scheming/ecospheres_dataset_schema.yaml) DCAT compatible.
+Les métadonnées recueillies par le POC CKAN Ecosphères à partir des [points de moissonnage](https://github.com/ecolabdata/guichetdonnees-public/blob/main/moissonnages.json) sont à la base de ces observations. Les métadonnées sur les jeux de données sont entreposées dans les tables `package` et `package_extra` de la [base de données CKAN](https://boykoc.github.io/ckan/2019/10/21/ckan-283-database-diagram.html), également disponibles par API suivant le [schéma Ecosphères](https://github.com/ecolabdata/ckanext-ecospheres/blob/main/ckanext/ecospheres/scheming/ecospheres_dataset_schema.yaml) DCAT compatible.
 
 ## Rapport HTML
 
@@ -31,25 +31,20 @@ git clone https://github.com/ecolabdata/ckanext-ecospheres.git
 
 ## Investigation
 
+Liste non exhaustive d'hypothèses et de questions à investiguer.
+
 H : Hypothèse ; Q : Question
 
-*H : En complément de la barre de recherche, l'activation de filtres tels que ceux disponibles sur les catalogues Ecosphères ou data.gouv est suffisante pour identifier les jeux de données utiles.*  
-Cette hypothèse est à rapprocher des taux de remplissage et du caractère discriminant des métadonnées associées à ces filtres, du niveau d'adéquation entre ces filtres et les critères de recherches exprimés par les utilisateurs, du nombre de données remontées à l'issue d'une recherche multicritère et de leur priorisation. Evaluer l'apport des *Large Language Model (LLM)* au regard des questions soulevées par cette hypothèse.
+*H : En complément de la barre de recherche, l'activation de filtres tels que ceux disponibles sur les catalogues [Ecosphères POC CKAN](https://preprod.data.developpement-durable.gouv.fr/) ou [data.gouv](https://www.data.gouv.fr/fr/) est suffisante pour identifier les jeux de données utiles.*  
+Cette hypothèse est à rapprocher des taux de remplissage et du caractère discriminant des métadonnées associées à ces filtres, du niveau d'adéquation entre ces filtres et les critères de recherches exprimés par les utilisateurs, du nombre de données remontées à l'issue d'une recherche multicritère et de leur priorisation.
 
 *H : Un aperçu du patrimoine des données disponibles sur chaque territoire est limité par le trop grand nombre de données qui y sont associées.*
 En se focalisant sur la maille départementale, il s'agit de visualiser la distribution du nombre de données par territoire.
-
-*H : A l'issu du moissonnage, les jeux de données collectés en doublon constituent une minorité et n'affectent pas la recherche.*  
-Comptabiliser le nombre de doublons.
 
 *Q : Dans quelle mesure les vocabulaires contrôlés facilitent-il la découvrabilité d'un jeu de données ?*  
 Lien entre vocabulaires contrôlés, filtres et indexations par le moteur de recherche.
 
 *Q : Quelle est la part des jeux de données associés à un document de référence (PLU, SUP, PPR, etc.) ?*
-
-*Q : Quels critères permettraient d'affirmer qu'une donnée est obsolète ?*  
-
-*Q : Suivant quels critères serait-il possible de caractériser l'efficacité d'une recherche (nombre de clicks utilisateurs, complexité algorithmique, etc.) ?*
 
 *Q : Quelle est la part des données restreintes ?*
 
