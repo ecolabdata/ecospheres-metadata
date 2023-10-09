@@ -1,4 +1,4 @@
-# Description des Métadonnées dans Ecosphères
+# Observation des métadonnées dans Ecosphères
 
 ## Enjeux
 
