@@ -2,9 +2,10 @@ import rdflib
 import pandas as pd
 
 class DCATReaderCKAN:
-    def __init__(self, graph_path:str):
-        self.graph_path = graph_path
-        self._graph = rdflib.Graph().parse(graph_path)
+    def __init__(self, graph_src:bytes, format='json-ld'):
+        self.graph_src = graph_src
+        self.format = format
+        self._graph = rdflib.Graph().parse(data=self.graph_src, format='json-ld')
         
     def get_data(self) -> pd.DataFrame:
         """ Given the path of a DCAT formated metadata graph,
@@ -24,7 +25,9 @@ class DCATReaderCKAN:
                     "description": self.get_dataset_description(uri),
                     "modification": self.get_dataset_modification(uri),
                     "right_statement": self.get_dataset_right_statement(uri),
-                    "key_words": self.get_dataset_key_words(uri)
+                    "themes": self.get_dataset_themes(uri),
+                    "key_words": self.get_dataset_key_words(uri),
+                    "standard": self.get_dataset_standard(uri)
                 }
             )
             
@@ -58,6 +61,15 @@ class DCATReaderCKAN:
                 rigth_statements.append(object_bnode)
                 
         return ' '.join(rigth_statements)
+        
+    def get_dataset_themes(self, dataset_uri:rdflib.term.URIRef)->str:
+        """ Returns a joined string of available key words. 
+        """
+        assert type(dataset_uri) == rdflib.term.URIRef
+        themes = []
+        for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#theme"), None)):
+            themes.append(object)
+        return ' '.join(themes)
     
     def get_dataset_key_words(self, dataset_uri:rdflib.term.URIRef)->str:
         """ Returns a joined string of available key words. 
@@ -67,3 +79,7 @@ class DCATReaderCKAN:
         for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#keyword"), None)):
             key_words.append(object)
         return ' '.join(key_words)
+
+    def get_dataset_standard(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        assert type(dataset_uri) == rdflib.term.URIRef
+        return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/Standard"))
