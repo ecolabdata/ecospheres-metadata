@@ -23,8 +23,8 @@ def __execute(notebook:str="all"):
     """
     
     if notebook=='all':
-        for notebook in sorted(glob.glob("[0-9][0-9]*.ipynb")):
-            output_notebook = "tmp/" + str(notebook)
+        for notebook in sorted(glob.glob("notebooks/[0-9][0-9]*.ipynb")):
+            output_notebook = "notebooks/tmp/" + str(notebook.split('/')[-1])
             print("Execute " + notebook)
             try:
                 pm.execute_notebook(notebook, output_notebook)
@@ -32,7 +32,7 @@ def __execute(notebook:str="all"):
                 print(f"Exception: {exception}")
     else:
         print("Execute " + notebook)
-        output_notebook = "tmp/" + str(notebook)
+        output_notebook = "notebooks/tmp/" + str(notebook)
         try:
             pm.execute_notebook(notebook, output_notebook)
         except Exception as exception:
@@ -43,7 +43,7 @@ def __generate():
     reveal.js slides.
     """    
     notebooks = []
-    for notebook in sorted(glob.glob("tmp/[0-9][0-9]*.ipynb")):
+    for notebook in sorted(glob.glob("notebooks/tmp/[0-9][0-9]*.ipynb")):
         print(notebook)
         notebooks.append(nbformat.read(notebook, as_version=4))
         
@@ -66,13 +66,13 @@ def __generate():
     
     engine = sqlalchemy.create_engine(database_url)
     environment_tag = get_environment_tag(engine.url.host, engine.url.database)
-    nbformat.write(metadata_report, "tmp/metadata_report.ipynb".format(environment_tag))
+    nbformat.write(metadata_report, "notebooks/tmp/metadata_report.ipynb".format(environment_tag))
     
     subprocess.run(
         [
             "jupyter",
             "trust",
-            "tmp/metadata_report.ipynb",
+            "notebooks/tmp/metadata_report.ipynb",
         ]
     )
     # Convert notebooks to revealjs slides    
@@ -80,7 +80,7 @@ def __generate():
         [
             "jupyter",
             "nbconvert",
-            "tmp/metadata_report.ipynb",
+            "notebooks/tmp/metadata_report.ipynb",
             "--to",
             "slides",
             "--output-dir",
@@ -102,11 +102,11 @@ def __generate():
     soup.find(id="header_left").string.replace_with(datetime.today().strftime('%Y-%m-%d'))
     soup.find(id="header_right").string.replace_with(config["DATABASE"]["host"].split(".")[0])
     
-    with open(environment_tag + ".slides.html", "wb") as file:
+    with open('notebooks/' + environment_tag + ".slides.html", "wb") as file:
         file.write(soup.prettify("utf-8"))
         
     # Delete temporary file
-    os.remove("tmp/metadata_report.ipynb")
+    os.remove("notebooks/tmp/metadata_report.ipynb")
     
 if __name__ == "__main__":
     
