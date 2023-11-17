@@ -144,11 +144,16 @@ class DatasetReader(Reader):
 
     def get_dataset_creator(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
-        return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/creator"))
+        creator = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/creator"))
+        if creator:
+            return self._graph.value(subject=creator, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
+        else:
+            return None
 
     def get_dataset_status(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         status = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://www.w3.org/ns/adms#status"))
+        
         # Extract the status form the URL
         status = status.split('/')[-1] if status else None
         return MAPPER_STATUS[status]
@@ -156,6 +161,8 @@ class DatasetReader(Reader):
     def get_dataset_catalog(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         catalog_record = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/isPrimaryTopicOf"))
-        catalog = self._graph.value(subject=catalog_record, predicate=rdflib.term.URIRef("http://www.w3.org/ns/dcat#inCatalog"))
-        return self.get_title(catalog)
+        if catalog_record:
+            catalog = self._graph.value(subject=catalog_record, predicate=rdflib.term.URIRef("http://www.w3.org/ns/dcat#inCatalog"))
+            return self.get_title(catalog)
+        return None
         
