@@ -1,2 +1,0 @@
-Test (très rapide) de la génération d'embeddings et des résultats obtenus par mesure de la similarité cosinus avec une phrase de type requête.
-Modèle testé : https://huggingface.co/dangvantuan/sentence-camembert-large
