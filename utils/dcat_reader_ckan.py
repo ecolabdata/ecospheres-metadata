@@ -89,11 +89,19 @@ class DatasetReader(Reader):
                     "standard": self.get_dataset_standard(uri),
                     "creator": self.get_dataset_creator(uri),
                     "status": self.get_dataset_status(uri),
-                    "catalog": self.get_dataset_catalog(uri)
+                    "catalog": self.get_dataset_catalog(uri),
+                    "spatial": self.get_dataset_spatial(uri)
                 }
             )
-            
-        return pd.DataFrame(data)
+        df = pd.DataFrame(data)
+        
+        # Split spatial attribute into different geographical zooms
+        if 'spatial' in df.columns:
+            df['commune'] = df['spatial'].apply(lambda x: utils.split_geo_levels(x, 'commune'))
+            df['departement'] = df['spatial'].apply(lambda x: utils.split_geo_levels(x, 'departement'))
+            df['departement'] = df.apply(lambda row: row['departement'] if not row['commune'] else None, axis=1) 
+            del df['spatial']
+        return df
         
     def get_datasets_uri(self) -> list[rdflib.term.URIRef]:        
         uri_list = []
@@ -165,4 +173,12 @@ class DatasetReader(Reader):
             catalog = self._graph.value(subject=catalog_record, predicate=rdflib.term.URIRef("http://www.w3.org/ns/dcat#inCatalog"))
             return self.get_title(catalog)
         return None
-        
+
+    def get_dataset_spatial(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        assert type(dataset_uri) == rdflib.term.URIRef
+        spatials = []
+        for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://purl.org/dc/terms/spatial"), None)):
+            # Saving only the INSEE URI
+            if 'insee' in object:
+                spatials.append(object)
+        return spatials
