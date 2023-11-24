@@ -3,6 +3,7 @@ DCATReaderCKAN
 """
 import rdflib
 import pandas as pd
+import utils
 
 MAPPER_STATUS = {
     'COMPLETED': 'Completed',
@@ -12,7 +13,7 @@ MAPPER_STATUS = {
     'obsolete': 'Obsolete',
     'required': 'Required',
     'planned': 'Planned',
-     None: 'None'
+    None: None
 }
 
 class Reader:
@@ -88,6 +89,7 @@ class DatasetReader(Reader):
                     "key_words": self.get_dataset_key_words(uri),
                     "standard": self.get_dataset_standard(uri),
                     "creator": self.get_dataset_creator(uri),
+                    "producer": self.get_dataset_right_holders(uri),
                     "status": self.get_dataset_status(uri),
                     "catalog": self.get_dataset_catalog(uri),
                     "spatial": self.get_dataset_spatial(uri)
@@ -100,6 +102,9 @@ class DatasetReader(Reader):
             df['commune'] = df['spatial'].apply(lambda x: utils.split_geo_levels(x, 'commune'))
             df['departement'] = df['spatial'].apply(lambda x: utils.split_geo_levels(x, 'departement'))
             df['departement'] = df.apply(lambda row: row['departement'] if not row['commune'] else None, axis=1) 
+
+            df['geo_coverage'] = df['spatial'].apply(utils.define_geo_coverage)
+
             del df['spatial']
         return df
         
@@ -153,8 +158,18 @@ class DatasetReader(Reader):
     def get_dataset_creator(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         creator = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/creator"))
+        # Creator is an Organization
         if creator:
             return self._graph.value(subject=creator, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
+        else:
+            return None
+
+    def get_dataset_right_holders(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        assert type(dataset_uri) == rdflib.term.URIRef
+        rights_holder = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/rights_holder"))
+        # Rights Holder is an Organization
+        if rights_holder:
+            return self._graph.value(subject=rights_holder, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
         else:
             return None
 
