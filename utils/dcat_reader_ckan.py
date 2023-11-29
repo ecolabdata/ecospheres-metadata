@@ -87,12 +87,14 @@ class DatasetReader(Reader):
                     "right_statement": self.get_dataset_right_statement(uri),
                     "themes": self.get_dataset_themes(uri),
                     "key_words": self.get_dataset_key_words(uri),
-                    "standard": self.get_dataset_standard(uri),
                     "creator": self.get_dataset_creator(uri),
-                    "producer": self.get_dataset_right_holders(uri),
+                    "rights_holder": self.get_dataset_right_holders(uri),
+                    "access_rights": self.get_dataset_access_rights(uri),
+                    "contact_points": self.get_dataset_contact_points(uri),
                     "status": self.get_dataset_status(uri),
                     "catalog": self.get_dataset_catalog(uri),
-                    "spatial": self.get_dataset_spatial(uri)
+                    "spatial": self.get_dataset_spatial(uri),
+                    "licenses": self.get_dataset_licenses(uri)
                 }
             )
         df = pd.DataFrame(data)
@@ -151,10 +153,6 @@ class DatasetReader(Reader):
             key_words.append(object)
         return ' '.join(key_words)
 
-    def get_dataset_standard(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
-        assert type(dataset_uri) == rdflib.term.URIRef
-        return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/Standard"))
-
     def get_dataset_creator(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         creator = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/creator"))
@@ -167,6 +165,15 @@ class DatasetReader(Reader):
     def get_dataset_right_holders(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         rights_holder = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/rights_holder"))
+        # Rights Holder is an Organization
+        if rights_holder:
+            return self._graph.value(subject=rights_holder, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
+        else:
+            return None
+    
+    def get_dataset_access_rights(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        assert type(dataset_uri) == rdflib.term.URIRef
+        access_rights = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/access_rights"))
         # Rights Holder is an Organization
         if rights_holder:
             return self._graph.value(subject=rights_holder, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
@@ -189,6 +196,23 @@ class DatasetReader(Reader):
             return self.get_title(catalog)
         return None
 
+    
+    def get_dataset_contact_points(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        assert type(dataset_uri) == rdflib.term.URIRef
+        catalog_record = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/isPrimaryTopicOf"))
+        contact_points = []
+        if catalog_record:
+            for _, _, contact_point in self._graph.triples((catalog_record,rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"), None)):
+                contact = self._graph.value(subject=contact_point, predicate=rdflib.term.URIRef("http://www.w3.org/2006/vcard/ns#hasEmail"))
+                if '@' in contact:
+                    contact = contact.split('catalog/')[1]
+                contact_points.append(contact)
+            return contact_points
+        if contact_points:
+            return list(set(contact_points)) # only keeping one occurence of each license
+        else :
+            return None
+
     def get_dataset_spatial(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         spatials = []
@@ -197,3 +221,14 @@ class DatasetReader(Reader):
             if 'insee' in object:
                 spatials.append(object)
         return spatials
+
+    def get_dataset_licenses(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        assert type(dataset_uri) == rdflib.term.URIRef
+        licenses = []
+        for _, _, distribution in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
+            licenses.append(self._graph.value(subject=distribution, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/license")))
+        if licenses:
+            return list(set(licenses)) # only keeping one occurence of each license
+        else :
+            return None
+
