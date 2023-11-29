@@ -11,9 +11,9 @@ La sauvergarde des dashboard/questions faites sur metabase se fait via les scrip
 ### Sauvegarde
 
 1. Récupérer les variables d'environnement du service Metabase que vous voulez sauvegarder : -> Mes Services -> Metabase -> ℹ️ et s'en servir pour remplir les variables d'environnement
-    `POSTGRES_DB= Valeur de <global.postgresql.auth.database>
-     POSTGRES_PASSWORD= Valeur de <global.postgresql.auth.password>
-     POSTGGRES_USER= Valeur de <global.postgresql.auth.username>`
+    * `POSTGRES_DB= Valeur de <global.postgresql.auth.database>`
+    * `POSTGRES_PASSWORD= Valeur de <global.postgresql.auth.password>`
+    * `POSTGGRES_USER= Valeur de <global.postgresql.auth.username>`
 1. Lancer `./backup_metabase.sh` 
 
 La sauvergarde se trouve dans le fichier `metabase.dump`
