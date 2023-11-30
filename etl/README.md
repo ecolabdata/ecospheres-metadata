@@ -2,7 +2,7 @@
 
 ## Sauvegarde et restauration de metabase
 
-La sauvergarde des dashboard/questions faites sur metabase se fait via les scripts `backup_metabase.sh` et `reformat_metabase.sh` du projet.
+La sauvergarde des dashboard/questions faites sur metabase se fait via le Makefile du projet.
 
 1. [Récupérer](https://datalab.sspcloud.fr/account/k8sCredentials) le script shell de connexion à Kubernetes sur la plateforme SSPCloud
 1. Exécuter ce script dans un terminal
@@ -14,7 +14,7 @@ La sauvergarde des dashboard/questions faites sur metabase se fait via les scrip
     * `POSTGRES_DB= Valeur de <global.postgresql.auth.database>`
     * `POSTGRES_PASSWORD= Valeur de <global.postgresql.auth.password>`
     * `POSTGGRES_USER= Valeur de <global.postgresql.auth.username>`
-1. Lancer `./backup_metabase.sh` 
+1. Lancer `make backup_metabase_config` 
 
 La sauvergarde se trouve dans le fichier `metabase.dump`
 
@@ -28,4 +28,4 @@ La sauvergarde se trouve dans le fichier `metabase.dump`
     `POSTGRES_DB= Valeur de <global.postgresql.auth.database>
      POSTGRES_PASSWORD= Valeur de <global.postgresql.auth.password>
      POSTGGRES_USER= Valeur de <global.postgresql.auth.username>`
-1. Lancer `./restore_metabase.sh` 
+1. Lancer `make restore_metabase_config` 
