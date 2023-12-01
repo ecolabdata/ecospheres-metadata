@@ -16,57 +16,20 @@ MAPPER_STATUS = {
     None: None
 }
 
-class Reader:
-    def __init__(self, graph_src:bytes, format='json-ld'):
-        self.graph_src = graph_src
-        self.format = format
-        self._graph = rdflib.Graph().parse(data=self.graph_src, format='json-ld')
-        
-    def get_title(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
-        return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/title"))
-
-
-class CatalogReader(Reader):
-
-    def get_data(self) -> pd.DataFrame:
-        """ Given the path of a DCAT formated metadata graph,
-        returns a DataFrame with dataset URIs as index and
-        the following metadata : title, description,
-        modification date, right stateme, key words. Each medatada
-        is handled separetly in a dedicated method.
-        """
-        catalogs_uri = self.get_catalogs_uri()
-        data = []
-        for uri in catalogs_uri:
-            data.append(
-                {
-                    "catalog": uri,
-                    "title": self.get_title(uri),
-                    #"catalog_records": self.get_records(uri)
-                }
-            )
-        return pd.DataFrame(data)
-
-    def get_catalogs_uri(self) -> list[rdflib.term.URIRef]:        
-        uri_list = []
-        for subject, _, _ in self._graph.triples((None, rdflib.term.URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),rdflib.term.URIRef("http://www.w3.org/ns/dcat#Catalog"))):
-            uri_list.append(subject)
-        return uri_list
-        
-    def get_records(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
-        assert type(dataset_uri) == rdflib.term.URIRef
-        contact_points = []
-        for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"), None)):
-            contact_points.append(object)
-        return ' '.join(contact_points)
-
         
 class DatasetReader(Reader):
+
     def __init__(self, graph_src:bytes, format='json-ld'):
         self.graph_src = graph_src
         self.format = format
         self._graph = rdflib.Graph().parse(data=self.graph_src, format='json-ld')
-        
+
+        self.pattern_open_access = [
+            "pas de restriction d'accès public selon inspire",
+            "licence ouverte",
+            "open licence",
+        ]
+    
     def get_data(self) -> pd.DataFrame:
         """ Given the path of a DCAT formated metadata graph,
         returns a DataFrame with dataset URIs as index and
@@ -89,7 +52,6 @@ class DatasetReader(Reader):
                     "key_words": self.get_dataset_key_words(uri),
                     "creator": self.get_dataset_creator(uri),
                     "rights_holder": self.get_dataset_right_holders(uri),
-                    "access_rights": self.get_dataset_access_rights(uri),
                     "contact_points": self.get_dataset_contact_points(uri),
                     "status": self.get_dataset_status(uri),
                     "catalog": self.get_dataset_catalog(uri),
@@ -108,7 +70,12 @@ class DatasetReader(Reader):
             df['geo_coverage'] = df['spatial'].apply(utils.define_geo_coverage)
 
             del df['spatial']
+        if 'right_statement' in df.columns:
+            df["right_statement_processed"] = df["right_statement"].apply(lambda x: any(label in x.lower().replace('\n', ' ') for label in self.pattern_open_access))
         return df
+        
+    def get_title(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+        return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/title"))
         
     def get_datasets_uri(self) -> list[rdflib.term.URIRef]:        
         uri_list = []
@@ -130,9 +97,8 @@ class DatasetReader(Reader):
         assert type(dataset_uri) == rdflib.term.URIRef
         rigth_statements = []
         for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://purl.org/dc/terms/accessRights"), None)):    
-            for _, _, object_bnode in self._graph.triples((object,rdflib.term.URIRef("http://www.w3.org/2000/01/rdf-schema#label"), None)):
-                rigth_statements.append(object_bnode)
-                
+            for _, _, label in self._graph.triples((object,rdflib.term.URIRef("http://www.w3.org/2000/01/rdf-schema#label"), None)):
+                rigth_statements.append(label)
         return ' '.join(rigth_statements)
         
     def get_dataset_themes(self, dataset_uri:rdflib.term.URIRef)->str:
@@ -170,15 +136,6 @@ class DatasetReader(Reader):
             return self._graph.value(subject=rights_holder, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
         else:
             return None
-    
-    def get_dataset_access_rights(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
-        assert type(dataset_uri) == rdflib.term.URIRef
-        access_rights = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/access_rights"))
-        # Rights Holder is an Organization
-        if rights_holder:
-            return self._graph.value(subject=rights_holder, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/name")).value
-        else:
-            return None
 
     def get_dataset_status(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
@@ -199,19 +156,9 @@ class DatasetReader(Reader):
     
     def get_dataset_contact_points(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
-        catalog_record = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/isPrimaryTopicOf"))
-        contact_points = []
-        if catalog_record:
-            for _, _, contact_point in self._graph.triples((catalog_record,rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"), None)):
-                contact = self._graph.value(subject=contact_point, predicate=rdflib.term.URIRef("http://www.w3.org/2006/vcard/ns#hasEmail"))
-                if '@' in contact:
-                    contact = contact.split('catalog/')[1]
-                contact_points.append(contact)
-            return contact_points
-        if contact_points:
-            return list(set(contact_points)) # only keeping one occurence of each license
-        else :
-            return None
+        contact_point = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"))
+        contact = self._graph.value(subject=contact_point, predicate=rdflib.term.URIRef("http://www.w3.org/2006/vcard/ns#hasEmail"))
+        return contact
 
     def get_dataset_spatial(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
