@@ -1,6 +1,5 @@
 cryptography==41.0.7
 requests
-ipython==8.18.1
 rdflib==7.0.0
 rdflib-jsonld==0.6.2
 python-dotenv==1.0.0
