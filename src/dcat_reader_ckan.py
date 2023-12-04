@@ -15,7 +15,7 @@ MAPPER_STATUS = {
     None: None
 }
 
-def split_geo_levels(insee_uris: list, geo_level: str)-> str:
+def split_geo_levels(insee_uris: list, geo_level: str) -> str:
     """
     Filter a list of INSEE URI to a specific geographical zoom level
     Attribute zoom_level can be 'commune' or 'departement'
@@ -194,7 +194,7 @@ class DatasetReader():
         contact = self._graph.value(subject=contact_point, predicate=rdflib.term.URIRef("http://www.w3.org/2006/vcard/ns#hasEmail"))
         return contact
 
-    def get_dataset_spatial(self, dataset_uri: rdflib.term.URIRef) ->r dflib.term.Literal:
+    def get_dataset_spatial(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         spatials = []
         for _, _, object in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://purl.org/dc/terms/spatial"), None)):
@@ -209,7 +209,7 @@ class DatasetReader():
         for _, _, distribution in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
             licenses.append(self._graph.value(subject=distribution, predicate= dflib.term.URIRef("http://purl.org/dc/terms/license")))
         if licenses:
-            return list(set(licenses)) # only keeping one occurence of each license
+            return list(set(licenses))  # only keeping one occurence of each license
         else :
             return None
 
