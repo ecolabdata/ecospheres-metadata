@@ -23,4 +23,5 @@ if __name__ == "__main__":
     filename = 'metadata'
     df = pd.read_csv(filename + '.csv', sep=';')
     df['univers'] = df.apply(create_universe_pprn, axis=1)
+    df['test_infra'] = 0
     df.to_csv(filename + '_processed.csv' , sep=';', index=False)
