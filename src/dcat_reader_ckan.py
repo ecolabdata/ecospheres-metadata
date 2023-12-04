@@ -17,7 +17,7 @@ MAPPER_STATUS = {
 }
 
         
-class DatasetReader(Reader):
+class DatasetReader():
 
     def __init__(self, graph_src:bytes, format='json-ld'):
         self.graph_src = graph_src

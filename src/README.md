@@ -1,5 +1,17 @@
 # Chaîne de traitements des données
 
+Cette chaîne de traitement fonctionne avec les services suivants, hébérgés dans un environnemnt Kubernetes :
+1. MinIO (ou autre service compatible S3)
+1. PostgreSQL
+1. Metabase
+
+## Mise à jour automatique
+
+La mise à jour se fait grâce à un cronjob Kubernetes (défini par le fichier src/cronjob.yaml). Ce cronjob doit s'éxectuer au sein du réseau du SSPCloud (le service PostgreSQL est contraint dans ce réseau).
+
+Afin de le créer :
+1. `kubectl create -f src/cronjob.yaml`
+
 ## Sauvegarde et restauration de metabase
 
 La sauvergarde des dashboard/questions faites sur metabase se fait via le Makefile du projet.
