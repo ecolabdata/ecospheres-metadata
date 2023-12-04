@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ecosphere
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: metadata
+            image: python
+            imagePullPolicy: IfNotPresent
+            env:
+            - name : S3_ENDPOINT_URL
+              value: <INSERT_S3_ENDPOINT_URL>
+            - name : BUCKET_NAME
+              value: projet-ecolab-action-qualite
+            - name : SECRET_KEY
+              value: <INSERT S3 SECRET KEY>
+            - name : ACCESS_KEY
+              value: <INSERT S3 ACCESS KEY>
+            - name : POSTGRES_USER
+              value: projet-ecolab-action-qualite
+            - name : POSTGRES_PASSWORD
+              value: <INSERT POSTGRESS PASSWORD>
+            - name : POSTGRES_URL
+              value: <INSERT POSTGRES URL>
+            - name : POSTGRES_PORT
+              value: "5432"
+            - name : POSTGRES_DB
+              value: defaultdb
+            command:
+            - /bin/sh
+            - -c
+            args:
+            - |
+              git clone https://github.com/ecolabdata/ecospheres-metadata /ecospheres/
+              cd /ecospheres
+              pip install -r requirements-ubuntu-22.04.1.txt
+              cd src
+              pip install -r requirements.txt
+              python extract.py
+              python transform.py
+              python load.py
+          restartPolicy: OnFailure
