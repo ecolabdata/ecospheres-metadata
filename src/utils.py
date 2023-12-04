@@ -132,37 +132,3 @@ def create_universe_pprn(row):
         elif 'prevention des risques' in unidecode(row[elem]).lower():
             return 'PPRN'
     return None
-
-def split_geo_levels(insee_uris: list, geo_level: str)-> str:
-    """
-    Filter a list of INSEE URI to a specific geographical zoom level
-    Attribute zoom_level can be 'commune' or 'departement'
-
-    Returns a string in which the different elements of the same zoom are seperated by a ','
-    """
-    geos_elements = []
-    for insee_uri in insee_uris:
-        if geo_level in insee_uri:
-            geos_elements.append(str(insee_uri.split(f'{geo_level}/')[1]))
-    if len(geos_elements) >= 1:
-        return ','.join(geos_elements)
-    else:
-        return None
-
-def define_geo_coverage(insee_uris: list) -> str:
-        """
-        Map a list or INSEE URI to a spatial coverage : 'departemental' or 'intra-departemental'
-        """
-        communes = 0
-        departements = 0
-        for insee_uri in insee_uris:
-            if 'commune' in insee_uri:
-                communes += 1
-            elif 'departement' in insee_uri:
-                departements +=1
-        if communes >= 1:
-            return 'Communale'
-        elif departements >= 1:
-            return 'Départementale'
-        else:
-            return None

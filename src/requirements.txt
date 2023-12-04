@@ -1,6 +1,4 @@
 cryptography==41.0.7
-geopandas
-bs4
 requests
 ipython==8.18.1
 rdflib==7.0.0

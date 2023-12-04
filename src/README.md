@@ -53,3 +53,7 @@ La sauvergarde se trouve dans le fichier `metabase.dump`
      POSTGRES_PASSWORD= Valeur de <global.postgresql.auth.password>
      POSTGGRES_USER= Valeur de <global.postgresql.auth.username>`
 1. Lancer `make restore_metabase_config` 
+
+
+## Améliorations de la chaîne de traitement
+* Lecture des variables d'environnement depuis le Vault

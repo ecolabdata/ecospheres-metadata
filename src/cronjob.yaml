@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: ecosphere
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "0 0 * * *"
   jobTemplate:
     spec:
       template:
@@ -36,10 +36,8 @@ spec:
             - -c
             args:
             - |
-              git clone https://github.com/ecolabdata/ecospheres-metadata /ecospheres/
-              cd /ecospheres
-              pip install -r requirements-ubuntu-22.04.1.txt
-              cd src
+              svn export https://github.com/ecolabdata/ecospheres-metadata/trunk/src /src
+              cd /src
               pip install -r requirements.txt
               python extract.py
               python transform.py

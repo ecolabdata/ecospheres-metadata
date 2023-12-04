@@ -3,7 +3,6 @@ DCATReaderCKAN
 """
 import rdflib
 import pandas as pd
-import utils
 
 MAPPER_STATUS = {
     'COMPLETED': 'Completed',
@@ -16,10 +15,45 @@ MAPPER_STATUS = {
     None: None
 }
 
+def split_geo_levels(insee_uris: list, geo_level: str)-> str:
+    """
+    Filter a list of INSEE URI to a specific geographical zoom level
+    Attribute zoom_level can be 'commune' or 'departement'
+
+    Returns a string in which the different elements of the same zoom are seperated by a ','
+    """
+    geos_elements = []
+    for insee_uri in insee_uris:
+        if geo_level in insee_uri:
+            geos_elements.append(str(insee_uri.split(f'{geo_level}/')[1]))
+    if len(geos_elements) >= 1:
+        return ','.join(geos_elements)
+    else:
+        return None
+
+
+def define_geo_coverage(insee_uris: list) -> str:
+    """
+    Map a list or INSEE URI to a spatial coverage : 'departemental' or 'intra-departemental'
+    """
+    communes = 0
+    departements = 0
+    for insee_uri in insee_uris:
+        if 'commune' in insee_uri:
+            communes += 1
+        elif 'departement' in insee_uri:
+            departements += 1
+    if communes >= 1:
+        return 'Communale'
+    elif departements >= 1:
+        return 'Départementale'
+    else:
+        return None
+
         
 class DatasetReader():
 
-    def __init__(self, graph_src:bytes, format='json-ld'):
+    def __init__(self, graph_src: bytes, format='json-ld'):
         self.graph_src = graph_src
         self.format = format
         self._graph = rdflib.Graph().parse(data=self.graph_src, format='json-ld')
@@ -63,11 +97,11 @@ class DatasetReader():
         
         # Split spatial attribute into different geographical zooms
         if 'spatial' in df.columns:
-            df['commune'] = df['spatial'].apply(lambda x: utils.split_geo_levels(x, 'commune'))
-            df['departement'] = df['spatial'].apply(lambda x: utils.split_geo_levels(x, 'departement'))
+            df['commune'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'commune'))
+            df['departement'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'departement'))
             df['departement'] = df.apply(lambda row: row['departement'] if not row['commune'] else None, axis=1) 
 
-            df['geo_coverage'] = df['spatial'].apply(utils.define_geo_coverage)
+            df['geo_coverage'] = df['spatial'].apply(define_geo_coverage)
 
             del df['spatial']
         if 'right_statement' in df.columns:
@@ -83,15 +117,15 @@ class DatasetReader():
             uri_list.append(subject)
         return uri_list
     
-    def get_dataset_description(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_description(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/description"))
     
-    def get_dataset_modification(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_modification(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/modified"))
     
-    def get_dataset_right_statement(self, dataset_uri:rdflib.term.URIRef)->str:
+    def get_dataset_right_statement(self, dataset_uri: rdflib.term.URIRef) -> str:
         """ Returns a joined string of available ritht statements.
         """
         assert type(dataset_uri) == rdflib.term.URIRef
@@ -101,7 +135,7 @@ class DatasetReader():
                 rigth_statements.append(label)
         return ' '.join(rigth_statements)
         
-    def get_dataset_themes(self, dataset_uri:rdflib.term.URIRef)->str:
+    def get_dataset_themes(self, dataset_uri: rdflib.term.URIRef) -> str:
         """ Returns a joined string of available key words. 
         """
         assert type(dataset_uri) == rdflib.term.URIRef
@@ -110,16 +144,16 @@ class DatasetReader():
             themes.append(object)
         return ' '.join(themes)
     
-    def get_dataset_key_words(self, dataset_uri:rdflib.term.URIRef)->str:
+    def get_dataset_key_words(self, dataset_uri: rdflib.term.URIRef) ->str:
         """ Returns a joined string of available key words. 
         """
         assert type(dataset_uri) == rdflib.term.URIRef
         key_words = []
-        for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#keyword"), None)):
+        for _, _, object in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#keyword"), None)):
             key_words.append(object)
         return ' '.join(key_words)
 
-    def get_dataset_creator(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_creator(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         creator = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/creator"))
         # Creator is an Organization
@@ -128,7 +162,7 @@ class DatasetReader():
         else:
             return None
 
-    def get_dataset_right_holders(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_right_holders(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         rights_holder = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/rights_holder"))
         # Rights Holder is an Organization
@@ -137,7 +171,7 @@ class DatasetReader():
         else:
             return None
 
-    def get_dataset_status(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_status(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         status = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://www.w3.org/ns/adms#status"))
         
@@ -145,7 +179,7 @@ class DatasetReader():
         status = status.split('/')[-1] if status else None
         return MAPPER_STATUS[status]
 
-    def get_dataset_catalog(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_catalog(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         catalog_record = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://xmlns.com/foaf/0.1/isPrimaryTopicOf"))
         if catalog_record:
@@ -154,26 +188,26 @@ class DatasetReader():
         return None
 
     
-    def get_dataset_contact_points(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_contact_points(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
-        contact_point = self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"))
+        contact_point = self._graph.value(subject=dataset_uri, predicate= rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"))
         contact = self._graph.value(subject=contact_point, predicate=rdflib.term.URIRef("http://www.w3.org/2006/vcard/ns#hasEmail"))
         return contact
 
-    def get_dataset_spatial(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_spatial(self, dataset_uri: rdflib.term.URIRef) ->r dflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         spatials = []
-        for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://purl.org/dc/terms/spatial"), None)):
+        for _, _, object in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://purl.org/dc/terms/spatial"), None)):
             # Saving only the INSEE URI
             if 'insee' in object:
                 spatials.append(object)
         return spatials
 
-    def get_dataset_licenses(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
+    def get_dataset_licenses(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         licenses = []
-        for _, _, distribution in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
-            licenses.append(self._graph.value(subject=distribution, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/license")))
+        for _, _, distribution in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
+            licenses.append(self._graph.value(subject=distribution, predicate= dflib.term.URIRef("http://purl.org/dc/terms/license")))
         if licenses:
             return list(set(licenses)) # only keeping one occurence of each license
         else :
