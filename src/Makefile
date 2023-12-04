@@ -32,4 +32,4 @@ restore-metabase-config:
 backup_metabase_cronjob:
 	apt install postgresql-client postgresql-client-common libpq-dev
 	export PGPASSWORD=${POSTGRES_PASSWORD} 
-	pg_dump -h $POSTGRES_URL -p $POSTGRES_PORT -d $POSTGRES_DB -U $POSTGRES_USER -Fc -f /tmp/backup.dump
+	pg_dump -h ${POSTGRES_URL} -p ${POSTGRES_PORT} -d ${POSTGRES_DB} -U ${POSTGRES_USER} -Fc -f /tmp/backup.dump
