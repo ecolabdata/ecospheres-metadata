@@ -207,7 +207,7 @@ class DatasetReader():
         assert type(dataset_uri) == rdflib.term.URIRef
         licenses = []
         for _, _, distribution in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
-            licenses.append(self._graph.value(subject=distribution, predicate= dflib.term.URIRef("http://purl.org/dc/terms/license")))
+            licenses.append(self._graph.value(subject=distribution, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/license")))
         if licenses:
             return list(set(licenses))  # only keeping one occurence of each license
         else :
