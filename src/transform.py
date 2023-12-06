@@ -14,7 +14,7 @@ def create_universe_pprn(row):
     for elem in ['title', 'description']:
         if 'pprn' in row[elem].lower():
             return 'PPRN'
-        elif 'prevention des risques naturel' in unidecode(row[elem]).lower():
+        elif 'prevention des risques naturels' in unidecode(row[elem]).lower():
             return 'PPRN'
     return None
 
