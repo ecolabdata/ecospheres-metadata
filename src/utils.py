@@ -121,14 +121,3 @@ def wrapper_engine(config:str):
     )
 
     return sqlalchemy.create_engine(database_url)
-
-def create_universe_pprn(row):
-    """
-    For a specific row, return if the element is considered to be a part of the 'PPRN' universe
-    """
-    for elem in ['title', 'description']:
-        if 'pprn' in row[elem].lower():
-            return 'PPRN'
-        elif 'prevention des risques' in unidecode(row[elem]).lower():
-            return 'PPRN'
-    return None

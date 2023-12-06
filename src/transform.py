@@ -6,6 +6,48 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+pattern_open_access = [
+    "pas de restriction d'accès public selon inspire",
+    "licence ouverte",
+    "open licence",
+]
+
+
+def split_geo_levels(insee_uris: list, geo_level: str) -> str:
+    """
+    Filter a list of INSEE URI to a specific geographical zoom level
+    Attribute zoom_level can be 'commune' or 'departement'
+
+    Returns a string in which the different elements of the same zoom are seperated by a ','
+    """
+    geos_elements = []
+    for insee_uri in insee_uris:
+        if geo_level in insee_uri:
+            geos_elements.append(str(insee_uri.split(f'{geo_level}/')[1]))
+    if len(geos_elements) >= 1:
+        return ','.join(geos_elements)
+    else:
+        return None
+
+
+def define_geo_coverage(insee_uris: list) -> str:
+    """
+    Map a list or INSEE URI to a spatial coverage : 'departemental' or 'intra-departemental'
+    """
+    communes = 0
+    departements = 0
+    for insee_uri in insee_uris:
+        if 'commune' in insee_uri:
+            communes += 1
+        elif 'departement' in insee_uri:
+            departements += 1
+    if communes >= 1:
+        return 'Communale'
+    elif departements >= 1:
+        return 'Départementale'
+    else:
+        return None
+
 
 def create_universe_pprn(row):
     """
@@ -19,9 +61,23 @@ def create_universe_pprn(row):
     return None
 
 
+def process_geo_data(df: pd.DataFrame) -> pd.DataFrame:
+    # Isolate commune or departement values
+    df['commune'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'commune'))
+    df['departement'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'departement'))
+    df['departement'] = df.apply(lambda row: row['departement'] if not row['commune'] else None, axis=1) 
+    
+    # Define the zoom level of the spatial resolution
+    df['geo_coverage'] = df['spatial'].apply(define_geo_coverage)
+    del df['spatial']
+    return df
+
+
 if __name__ == "__main__":
     filename = 'metadata'
     df = pd.read_csv(filename + '.csv', sep=';')
     df['univers'] = df.apply(create_universe_pprn, axis=1)
-    df['test_infra'] = 0
-    df.to_csv(filename + '_processed.csv' , sep=';', index=False)
+    df = process_geo_data(df)
+    df["right_statement_processed"] = df["right_statement"].apply(lambda x: any(label in x.lower().replace('\n', ' ') for label in pattern_open_access))
+    df['test_infra'] = 1
+    df.to_csv(filename + '_processed.csv', sep=';', index=False)

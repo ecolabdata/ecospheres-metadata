@@ -14,42 +14,6 @@ MAPPER_STATUS = {
     'planned': 'Planned',
     None: None
 }
-
-def split_geo_levels(insee_uris: list, geo_level: str) -> str:
-    """
-    Filter a list of INSEE URI to a specific geographical zoom level
-    Attribute zoom_level can be 'commune' or 'departement'
-
-    Returns a string in which the different elements of the same zoom are seperated by a ','
-    """
-    geos_elements = []
-    for insee_uri in insee_uris:
-        if geo_level in insee_uri:
-            geos_elements.append(str(insee_uri.split(f'{geo_level}/')[1]))
-    if len(geos_elements) >= 1:
-        return ','.join(geos_elements)
-    else:
-        return None
-
-
-def define_geo_coverage(insee_uris: list) -> str:
-    """
-    Map a list or INSEE URI to a spatial coverage : 'departemental' or 'intra-departemental'
-    """
-    communes = 0
-    departements = 0
-    for insee_uri in insee_uris:
-        if 'commune' in insee_uri:
-            communes += 1
-        elif 'departement' in insee_uri:
-            departements += 1
-    if communes >= 1:
-        return 'Communale'
-    elif departements >= 1:
-        return 'Départementale'
-    else:
-        return None
-
         
 class DatasetReader():
 
@@ -57,12 +21,6 @@ class DatasetReader():
         self.graph_src = graph_src
         self.format = format
         self._graph = rdflib.Graph().parse(data=self.graph_src, format='json-ld')
-
-        self.pattern_open_access = [
-            "pas de restriction d'accès public selon inspire",
-            "licence ouverte",
-            "open licence",
-        ]
     
     def get_data(self) -> pd.DataFrame:
         """ Given the path of a DCAT formated metadata graph,
@@ -93,20 +51,7 @@ class DatasetReader():
                     "licenses": self.get_dataset_licenses(uri)
                 }
             )
-        df = pd.DataFrame(data)
-        
-        # Split spatial attribute into different geographical zooms
-        if 'spatial' in df.columns:
-            df['commune'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'commune'))
-            df['departement'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'departement'))
-            df['departement'] = df.apply(lambda row: row['departement'] if not row['commune'] else None, axis=1) 
-
-            df['geo_coverage'] = df['spatial'].apply(define_geo_coverage)
-
-            del df['spatial']
-        if 'right_statement' in df.columns:
-            df["right_statement_processed"] = df["right_statement"].apply(lambda x: any(label in x.lower().replace('\n', ' ') for label in self.pattern_open_access))
-        return df
+        return pd.DataFrame(data)
         
     def get_title(self, dataset_uri:rdflib.term.URIRef)->rdflib.term.Literal:
         return self._graph.value(subject=dataset_uri, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/title"))
@@ -136,7 +81,7 @@ class DatasetReader():
         return ' '.join(rigth_statements)
         
     def get_dataset_themes(self, dataset_uri: rdflib.term.URIRef) -> str:
-        """ Returns a joined string of available key words. 
+        """ Returns a joined string of available themes. 
         """
         assert type(dataset_uri) == rdflib.term.URIRef
         themes = []
@@ -204,6 +149,7 @@ class DatasetReader():
         return spatials
 
     def get_dataset_licenses(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
+
         assert type(dataset_uri) == rdflib.term.URIRef
         licenses = []
         for _, _, distribution in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
