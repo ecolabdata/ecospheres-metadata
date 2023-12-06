@@ -78,6 +78,8 @@ if __name__ == "__main__":
     df = pd.read_csv(filename + '.csv', sep=';')
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
-    df["right_statement_processed"] = df["right_statement"].apply(lambda x: any(label in x.lower().replace('\n', ' ') for label in pattern_open_access))
+    df["right_statement"] = df["right_statement"].apply(
+        lambda x: any(label in x.lower().replace('\n', ' ') if isinstance(x, str) else None for label in pattern_open_access)
+        )
     df['test_infra'] = 1
     df.to_csv(filename + '_processed.csv', sep=';', index=False)
