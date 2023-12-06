@@ -84,8 +84,12 @@ def transform(filename='metadata'):
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement"] = df["right_statement"].apply(map_right_statement)
-    df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')
 
+    # Convert all array elemnts to PSQL arrays
+    for col in ['departement', 'commune', 'themes', 'key_words', 'license']:
+        df[col] = df[col].apply(lambda x: str(x).replace('[', '{').replace(']', '}'))
+
+    df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')
 
 if __name__ == "__main__":
     transform()
