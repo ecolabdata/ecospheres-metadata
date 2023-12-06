@@ -86,7 +86,7 @@ def transform(filename='metadata'):
     df["right_statement"] = df["right_statement"].apply(map_right_statement)
 
     # Convert all array elemnts to PSQL arrays
-    for col in ['departement', 'commune', 'themes', 'key_words', 'license']:
+    for col in ['departement', 'commune', 'themes', 'key_words', 'licenses']:
         df[col] = df[col].apply(lambda x: str(x).replace('[', '{').replace(']', '}'))
 
     df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')
