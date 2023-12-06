@@ -22,7 +22,7 @@ def load_into_postgres(df):
 
 
 def load(filename='metadata'):
-    df = pd.read_csv(filename + '_processed.csv', sep=';', converters={"spatial": read_as_list})
+    df = pd.read_csv(filename + '_processed.csv', sep=';')
     logging.info('Loading data into postgres')
     load_into_postgres(df)
 

@@ -87,9 +87,10 @@ def transform(filename='metadata'):
 
     # Convert all array elemnts to PSQL arrays
     for col in ['departement', 'commune', 'themes', 'key_words', 'licenses']:
-        df[col] = df[col].apply(lambda x: str(x).replace('[', '{').replace(']', '}'))
+        df[col] = df[col].apply(lambda x: str(x).replace('[', '{').replace(']', '}').replace('\'', ''))
 
     df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')
+
 
 if __name__ == "__main__":
     transform()
