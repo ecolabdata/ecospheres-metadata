@@ -14,9 +14,10 @@ def load_into_postgres(df):
     with engine.begin() as connection:
         df.to_sql(name='datasets', con=connection, if_exists='replace', index=False)
 
-
-if __name__ == "__main__":
-    filename = 'metadata'
+def load(filename='metadata'):
     df = pd.read_csv(filename + '_processed.csv', sep=';',)
     logging.info('Loading data into postgres')
     load_into_postgres(df)
+
+if __name__ == "__main__":
+    load()

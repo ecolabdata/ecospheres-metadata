@@ -9,7 +9,7 @@ from dcat_reader_ckan import DatasetReader
 
 load_dotenv()
 
-def extract_metadata(filename: str) -> pd.DataFrame:
+def extract(filename: str) -> pd.DataFrame:
     """
     Extract data from dump on S3
     """
@@ -36,4 +36,4 @@ def extract_metadata(filename: str) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    extract_metadata("metadata.csv")
+    extract("metadata.csv")

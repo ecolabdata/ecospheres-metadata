@@ -79,10 +79,13 @@ def read_as_list(x):
     return x.strip("[]").split(", ")
 
 
-if __name__ == "__main__":
-    filename = 'metadata'
+def transform(filename='metadata'):
     df = pd.read_csv(filename + '.csv', sep=';', converters={"spatial": read_as_list})
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement"] = df["right_statement"].apply(map_right_statement)
     df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')
+
+
+if __name__ == "__main__":
+    transform()
