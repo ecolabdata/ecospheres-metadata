@@ -78,7 +78,7 @@ class DatasetReader():
         for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://purl.org/dc/terms/accessRights"), None)):    
             for _, _, label in self._graph.triples((object,rdflib.term.URIRef("http://www.w3.org/2000/01/rdf-schema#label"), None)):
                 rigth_statements.append(label)
-        return ' '.join(rigth_statements)
+        return rigth_statements
         
     def get_dataset_themes(self, dataset_uri: rdflib.term.URIRef) -> str:
         """ Returns a joined string of available themes. 
@@ -87,7 +87,7 @@ class DatasetReader():
         themes = []
         for _, _, object in self._graph.triples((dataset_uri,rdflib.term.URIRef("http://www.w3.org/ns/dcat#theme"), None)):
             themes.append(object)
-        return ' '.join(themes)
+        return themes
     
     def get_dataset_key_words(self, dataset_uri: rdflib.term.URIRef) ->str:
         """ Returns a joined string of available key words. 
@@ -96,7 +96,7 @@ class DatasetReader():
         key_words = []
         for _, _, object in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#keyword"), None)):
             key_words.append(object)
-        return ' '.join(key_words)
+        return key_words
 
     def get_dataset_creator(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
@@ -149,13 +149,12 @@ class DatasetReader():
         return spatials
 
     def get_dataset_licenses(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
-
         assert type(dataset_uri) == rdflib.term.URIRef
         licenses = []
         for _, _, distribution in self._graph.triples((dataset_uri, rdflib.term.URIRef("http://www.w3.org/ns/dcat#distribution"), None)):
             licenses.append(self._graph.value(subject=distribution, predicate=rdflib.term.URIRef("http://purl.org/dc/terms/license")))
         try:
-            return '{' + ','.join(list(set(licenses))) + '}'  # only keeping one occurence of each license
+            return list(set(licenses))  # only keeping one occurence of each license
         except TypeError:
-            return '{}'
+            return []
 

@@ -1,7 +1,6 @@
 import pandas as pd
 import logging
 from unidecode import unidecode
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -23,12 +22,8 @@ def split_geo_levels(insee_uris: list, geo_level: str) -> str:
     geos_elements = []
     for insee_uri in insee_uris:
         if geo_level in insee_uri:
-            geos_elements.append(str(insee_uri.split(f'{geo_level}/')[1]))
-    if len(geos_elements) >= 1:
-        return ','.join(geos_elements)
-    else:
-        return None
-
+            geos_elements.append(insee_uri.split(f'{geo_level}/')[1].split('\'')[0])
+    return geos_elements
 
 def define_geo_coverage(insee_uris: list) -> str:
     """
@@ -72,6 +67,7 @@ def process_geo_data(df: pd.DataFrame) -> pd.DataFrame:
     del df['spatial']
     return df
 
+
 def map_right_statement(x):
     if isinstance(x, str):
         return any(label in x.lower().replace('\n', ' ') for label in pattern_open_access)
@@ -79,10 +75,14 @@ def map_right_statement(x):
         return False
     
 
+def read_as_list(x):
+    return x.strip("[]").split(", ")
+
+
 if __name__ == "__main__":
     filename = 'metadata'
-    df = pd.read_csv(filename + '.csv', sep=';')
+    df = pd.read_csv(filename + '.csv', sep=';', converters={"spatial": read_as_list})
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement"] = df["right_statement"].apply(map_right_statement)
-    df.to_csv(filename + '_processed.csv', sep=';', index=False)
+    df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')

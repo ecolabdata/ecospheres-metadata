@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 import datetime
 import configparser
 import sqlalchemy
-from unidecode import unidecode
 
 def count_words(sentence: str) -> int:
     try:
