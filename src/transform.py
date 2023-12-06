@@ -85,5 +85,4 @@ if __name__ == "__main__":
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement"] = df["right_statement"].apply(map_right_statement)
-    df['test_infra'] = 1
     df.to_csv(filename + '_processed.csv', sep=';', index=False)
