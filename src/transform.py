@@ -83,7 +83,7 @@ def transform(filename='metadata'):
     df = pd.read_csv(filename + '.csv', sep=';', converters={"spatial": read_as_list})
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
-    df["right_statement"] = df["right_statement"].apply(map_right_statement)
+    df["right_statement_processed"] = df["right_statement"].apply(map_right_statement)
 
     # Convert all array elemnts to PSQL arrays
     for col in ['departement', 'commune', 'themes', 'key_words', 'licenses']:
