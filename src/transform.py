@@ -79,12 +79,25 @@ def read_as_list(x):
     return x.strip("[]").split(", ")
 
 
+def clean_contact_points(contact_points:pd.Series):
+    return contact_points.apply(lambda x: x.split('catalog/')[1] if isinstance(x, str) else None)
+
+
+def clean_licenses(licenses:pd.Series):
+    def clean_values(x):
+        if x == '[]' or x == '[None]' or 'BNode' in x:
+            x = '[]'
+        return x.split('rdflib.term.URIRef(')[1] if x != '[]' else '[]'
+    return licenses.apply(clean_values)
+
+
 def transform(filename='metadata'):
     df = pd.read_csv(filename + '.csv', sep=';', converters={"spatial": read_as_list})
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement_processed"] = df["right_statement"].apply(map_right_statement)
-
+    df["contact_points"] = clean_contact_points(df["contact_points"])
+    df["licenses"] = clean_licenses(df["licenses"])
     # Convert all array elemnts to PSQL arrays
     for col in ['departement', 'commune', 'themes', 'key_words', 'licenses']:
         df[col] = df[col].apply(lambda x: str(x).replace('[', '{').replace(']', '}').replace('\'', ''))
