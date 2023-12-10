@@ -12,6 +12,19 @@ pattern_open_access = [
 ]
 
 
+RAW_COLUMNS = [
+    'catalog',
+    'contact_points',
+    'licenses',
+    'modification',
+    'rights_holder',
+    'right_statement',
+    'spatial',
+    'status',
+    'title'
+]
+
+
 def split_geo_levels(insee_uris: list, geo_level: str) -> str:
     """
     Filter a list of INSEE URI to a specific geographical zoom level
@@ -91,8 +104,13 @@ def clean_licenses(licenses:pd.Series):
     return licenses.apply(clean_values)
 
 
+def percantage_filling(df:pd.DataFrame) -> pd.Series:
+    return  100 * df[RAW_COLUMNS].count(axis=1) / len(RAW_COLUMNS)
+
+
 def transform(filename='metadata'):
     df = pd.read_csv(filename + '.csv', sep=';', converters={"spatial": read_as_list})
+    df['percantage_filling'] = percantage_filling(df)
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement_processed"] = df["right_statement"].apply(map_right_statement)
