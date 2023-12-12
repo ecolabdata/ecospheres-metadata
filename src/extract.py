@@ -31,9 +31,9 @@ def extract(filename: str) -> pd.DataFrame:
 
     logging.debug("Nombre de pages traitées : ", iteration)
     data = pd.concat(datasets)
-    data.to_csv(filename, sep=';', index=False)
+    data.to_csv(filename + '.csv', sep=';', index=False)
     return data
 
 
 if __name__ == "__main__":
-    extract("metadata.csv")
+    extract("metadata")

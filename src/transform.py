@@ -121,6 +121,7 @@ def transform(filename='metadata'):
         df[col] = df[col].apply(lambda x: str(x).replace('[', '{').replace(']', '}').replace('\'', ''))
 
     df.to_csv(filename + '_processed.csv', sep=';', index=False, mode='w')
+    return df
 
 
 if __name__ == "__main__":
