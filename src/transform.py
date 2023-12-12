@@ -100,7 +100,7 @@ def clean_licenses(licenses:pd.Series):
     def clean_values(x):
         if x == '[]' or x == '[None]' or 'BNode' in x:
             x = None
-        return x.split('rdflib.term.URIRef(')[1].split(')}')[0] if x != '[]' else None
+        return x.split('rdflib.term.URIRef(')[1].split(')}')[0] if x else None
     return licenses.apply(clean_values)
 
 
