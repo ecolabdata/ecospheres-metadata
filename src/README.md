@@ -16,6 +16,12 @@ Afin de le créer :
 
 ## Mise à jour manuelle
 
+### Au sein du SSP Cloud
+1. Démarrer un [service jupyter](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?version=1.13.22) dans le projet 'projet-ecolab-action-qualite' sur le SSPCloud
+1. Mettre à jour les variables d'environnement dans le fichier `src/.env`
+1. Ouvrir le notebook `src/etl.ipynb` et exécuter la brique ETL
+
+### En local
 Actuellement il n'est pas possible de réaliser toutes les étapes d'automatisation hors du réseau interne du SSPCloud.  Pour cela, il faudrait ouvrir sur internet le service Postgresql.
 Les étapes **Extract** et **Transform** peuvent être exécutés, mais pas **Load**.
 
