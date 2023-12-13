@@ -142,7 +142,7 @@ def transform(filename='metadata'):
     df['univers'] = df.apply(create_universe_pprn, axis=1)
     df = process_geo_data(df)
     df["right_statement_processed"] = df["right_statement"].apply(map_right_statement)
-    df["contact_points"] = clean_contact_point(df["contact_points"])
+    df["contact_point"] = clean_contact_point(df["contact_point"])
     df["licenses"] = clean_licenses(df["licenses"])
 
     # Convert all array elemnets to PSQL arrays
