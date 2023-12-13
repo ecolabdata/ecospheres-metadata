@@ -44,7 +44,7 @@ class DatasetReader():
                     "key_words": self.get_dataset_key_words(uri),
                     "creator": self.get_dataset_creator(uri),
                     "rights_holder": self.get_dataset_right_holders(uri),
-                    "contact_points": self.get_dataset_contact_points(uri),
+                    "contact_point": self.get_dataset_contact_point(uri),
                     "status": self.get_dataset_status(uri),
                     "catalog": self.get_dataset_catalog(uri),
                     "spatial": self.get_dataset_spatial(uri),
@@ -133,7 +133,7 @@ class DatasetReader():
         return None
 
     
-    def get_dataset_contact_points(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
+    def get_dataset_contact_point(self, dataset_uri: rdflib.term.URIRef) -> rdflib.term.Literal:
         assert type(dataset_uri) == rdflib.term.URIRef
         contact_point = self._graph.value(subject=dataset_uri, predicate= rdflib.term.URIRef("http://www.w3.org/ns/dcat#contactPoint"))
         contact = self._graph.value(subject=contact_point, predicate=rdflib.term.URIRef("http://www.w3.org/2006/vcard/ns#hasEmail"))
