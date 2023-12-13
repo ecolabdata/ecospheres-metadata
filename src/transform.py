@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-pattern_open_access = [
+PATTERN_OPEN_ACCESS = [
     "pas de restriction d'accès public selon inspire",
     "licence ouverte",
     "open licence",
@@ -35,7 +35,10 @@ def split_geo_levels(insee_uris: list, geo_level: str) -> str:
     for insee_uri in insee_uris:
         if geo_level in insee_uri:
             geos_elements.append(insee_uri.split(f'{geo_level}/')[1].split('\'')[0])
-    return geos_elements
+    if geos_elements:
+        return geos_elements
+    else:
+        return None
 
 
 def define_geo_coverage(insee_uris: list) -> str:
@@ -70,14 +73,31 @@ def create_universe_pprn(row):
 
 
 def process_geo_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Process the geographical columns of the data frame
+    Inludes: 
+        * Isolating commune and departement values from the field Spatial
+        * Defining the zoom level of the spatial resolution
+    """
     # Isolate commune or departement values
     df['commune'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'commune'))
     df['departement'] = df['spatial'].apply(lambda x: split_geo_levels(x, 'departement'))
-    df['departement'] = df.apply(lambda row: row['departement'] if not row['commune'] else None, axis=1) 
     
     # Define the zoom level of the spatial resolution
     df['geo_coverage'] = df['spatial'].apply(define_geo_coverage)
     del df['spatial']
+
+    # Fill departement when departement is empty but we have the commune
+    # In case of multiple commune, we choose the departement of the first commune 
+    def fill_departement(row):
+        if row['departement']:
+            return row['departement']
+        else:
+            if row['commune']:
+                return [str(row['commune'][0][0:2])]
+            else:
+                return None
+    df['departement'] = df.apply(fill_departement, axis=1)
     return df
 
 
@@ -87,7 +107,7 @@ def map_right_statement(x):
     If a pattern is included in the RightsStatement, returns True to indicate it's open access
     """
     if isinstance(x, str):
-        return any(label in x.lower().replace('\n', ' ') for label in pattern_open_access)
+        return any(label in x.lower().replace('\n', ' ') for label in PATTERN_OPEN_ACCESS)
     else:
         return False
 
@@ -114,6 +134,12 @@ def clean_licenses(licenses: pd.Series):
 
 
 def percantage_filling(df: pd.DataFrame) -> pd.Series:
+    """
+    Compute the percentage of metadata filling for each row
+    The metadata chosen for this score are stored in the global variable RAW_COLUMNS
+
+    Returns a percentage
+    """
     return 100 * df[RAW_COLUMNS].count(axis=1) / len(RAW_COLUMNS)
 
 
@@ -136,6 +162,9 @@ def read_as_list(x):
 
 
 def transform(filename='metadata'):
+    """
+    Main function of the Transform module of the ETL
+    """
     df = pd.read_csv(filename + '.csv', sep=';', converters={"spatial": read_as_list})
 
     df['percantage_filling'] = percantage_filling(df)
