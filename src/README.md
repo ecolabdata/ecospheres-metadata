@@ -22,13 +22,16 @@ Afin de le créer :
 2. Lancer la commande `kubectl apply -f src/cronjob.yaml` afin de démarrer le service de cronjob. Une fois lancé, celui-ci va exécuter le code à la fréquence renseignée (tous les jours : 0 0 \* \* \* )
 3. Il est ensuite possible de vérifier que le service Cronjob est bien actif avec la commande `kubectl get cronjobs`
 
+Un [compte de service a été crée pour le MinIO](https://minio-console.lab.sspcloud.fr/login). Il permet d'avoir des indentifiants spécifiques, configurables et qui se mettent à jour à une fréquence choisie.
+
 ### Mise à jour manuelle
 
 #### Au sein du SSP Cloud
 
 1. Démarrer un [service jupyter](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?version=1.13.22) dans le projet 'projet-ecolab-action-qualite' sur le SSPCloud
-2. Mettre à jour les variables d'environnement dans le fichier `src/.env`
-3. Ouvrir le notebook `src/etl.ipynb` et exécuter la brique ETL
+1. Mettre à jour les variables d'environnement dans le fichier `src/.env`
+1.   Executer `pip install -r requirements.txt'
+1. Ouvrir le notebook `src/etl.ipynb` et exécuter la brique ETL
 
 #### En local
 
