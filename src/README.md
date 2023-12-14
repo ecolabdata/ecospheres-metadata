@@ -8,9 +8,39 @@ Celle-ci a été conçue et documentée de telle façon à pouvoir être reprise
 
 La chaîne de traitement prend en entrée les fichiers sources stockés sur MinIO, et donne en sortie une base de données PostgreSQL, elle-même requêtée par Metabase. Ces différents services sont hébergés dans un environnement Kubernetes et managés sur l'infrastructure [SSP Cloud](https://www.sspcloud.fr/).
 
+Les services suivants sont à instancier dans le SSP Cloud pour pouvoir exécuter la chaîne de traitement et la visualisation :
+1. *MinIO (existe par défaut dans le SSP Cloud)*
+1. Postgres 
+1. Jupyter (pour un lancement manue uniquement)
+1. Metabase 
+
 ### Fichiers sources
 
 Les fichiers sources sont une extraction ("dump") de l'exposition DCAT du [catalogue CKAN Ecosphères](https://preprod.data.developpement-durable.gouv.fr/) au format JSON, déposés manuellement sur l'espace de stockage MinIO (ou tout service de stockage d'objets compatible S3).
+
+### Variables d'environnement
+La chaîne de traitement a besoin des accès à Postgres et au service MinIO. Pour cela, il faut renseigner les variables d'environnement dans le fichier `src/.env` (gestion manuelle) ou dans le fichier `src/cronjob.yaml` (gestion automatique).
+Vous pouvez les retrouvez ou créer :
+* Pour Metabase : -> Mes Services -> Metabase -> ℹ️ (bouton information) 
+* Pour MinIO : il faut créer ou récupérer un [compte de service](https://minio-console.lab.sspcloud.fr/login) (vous ne pouvez pas utiliser les identifiants personnels MinIO pour le moment). Ce compte de service permet d'avoir des indentifiants spécifiques, configurables et qui se mettent à jour à une fréquence choisie. Si le compte n'existe pas à cette adresse https://minio-console.lab.sspcloud.fr/access-keys, vous pouvez en créer un. Après avoir cliqué sur `Create acess key`, l'application propose un compte. Il faut alors valider l'option `Restrict beyond user policy`, et renseigner une configuration permettant de se connecter à l'espace de travail, comme dans cet exemple pour l'environnement de travail **projet-ecolab-action-qualite** :
+``` json
+{
+ "Version": "2012-10-17",
+ "Statement": [
+  {
+   "Effect": "Allow",
+   "Action": [
+    "s3:*"
+   ],
+   "Resource": [
+    "arn:aws:s3:::projet-ecolab-action-qualite",
+    "arn:aws:s3:::projet-ecolab-action-qualite/*"
+   ]
+  }
+ ]
+}
+```
+
 
 ### Mise à jour automatique
 
@@ -18,19 +48,18 @@ La mise à jour se fait grâce à un cronjob Kubernetes (défini par le fichier 
 
 Afin de le créer :
 
-1. Récupérer les variables d'environnement du service Metabase que vous voulez sauvegarder : -> Mes Services -> Metabase -> ℹ️ (bouton information) et s'en servir pour remplir les variables d'environnement du fichier `cronjob.yaml`
-2. Lancer la commande `kubectl apply -f src/cronjob.yaml` afin de démarrer le service de cronjob. Une fois lancé, celui-ci va exécuter le code à la fréquence renseignée (tous les jours : 0 0 \* \* \* )
-3. Il est ensuite possible de vérifier que le service Cronjob est bien actif avec la commande `kubectl get cronjobs`
-
-Un [compte de service a été crée pour le MinIO](https://minio-console.lab.sspcloud.fr/login). Il permet d'avoir des indentifiants spécifiques, configurables et qui se mettent à jour à une fréquence choisie.
+1. S'assurer d'avoir toutes les variables d'environnement renseignées (voir au dessus) dans le fichier `src/cronjob.yaml`
+1. Lancer la commande `kubectl apply -f src/cronjob.yaml` afin de démarrer le service de cronjob. Une fois lancé, celui-ci va exécuter le code à la fréquence renseignée (tous les jours : 0 0 \* \* \* )
+1. Il est ensuite possible de vérifier que le service Cronjob est bien actif avec la commande `kubectl get cronjobs`
 
 ### Mise à jour manuelle
 
 #### Au sein du SSP Cloud
 
+
 1. Démarrer un [service jupyter](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?version=1.13.22) dans le projet 'projet-ecolab-action-qualite' sur le SSPCloud
-1. Mettre à jour les variables d'environnement dans le fichier `src/.env`
-1.   Executer `pip install -r requirements.txt'
+1. S'assurer d'avoir toutes les variables d'environnement renseignées (voir au dessus) dans le fichier `src/.env`
+1. Executer `pip install -r requirements.txt'
 1. Ouvrir le notebook `src/etl.ipynb` et exécuter la brique ETL
 
 #### En local
