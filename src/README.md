@@ -18,7 +18,7 @@ La mise à jour se fait grâce à un cronjob Kubernetes (défini par le fichier 
 
 Afin de le créer :
 
-1. Récupérer les variables d'environnement du service Metabase que vous voulez sauvegarder : -> Mes Services -> Metabase -> ℹ️ et s'en servir pour remplir les variables d'environnement du fichier `cronjob.yaml`
+1. Récupérer les variables d'environnement du service Metabase que vous voulez sauvegarder : -> Mes Services -> Metabase -> ℹ️ (bouton information) et s'en servir pour remplir les variables d'environnement du fichier `cronjob.yaml`
 2. Lancer la commande `kubectl apply -f src/cronjob.yaml` afin de démarrer le service de cronjob. Une fois lancé, celui-ci va exécuter le code à la fréquence renseignée (tous les jours : 0 0 \* \* \* )
 3. Il est ensuite possible de vérifier que le service Cronjob est bien actif avec la commande `kubectl get cronjobs`
 
@@ -65,7 +65,7 @@ La sauvegarde se trouve dans le fichier `metabase.dump`
 > Le processus de restauration va reformater toute l'instance metabase ! Il est **fortement recommandé** d'utiliser une instance vide car toutes les données seront supprimées
 
 1. S'assurer d'avoir un fichier `metabase.dump` dans le dossier des scripts.
-2. Récupérer les variables d'environnement du service Metabase que vous voulez reformater avec les dashboard/questions sauvergardées : -> Mes Services -> Metabase -> ℹ️ et s'en servir pour remplir les variables d'environnement
+2. Récupérer les variables d'environnement du service Metabase que vous voulez reformater avec les dashboard/questions sauvergardées : -> Mes Services -> Metabase -> ℹ️ (bouton information) et s'en servir pour remplir les variables d'environnement
    `POSTGRES_DB= Valeur de <global.postgresql.auth.database>
  POSTGRES_PASSWORD= Valeur de <global.postgresql.auth.password>
  POSTGGRES_USER= Valeur de <global.postgresql.auth.username>`
