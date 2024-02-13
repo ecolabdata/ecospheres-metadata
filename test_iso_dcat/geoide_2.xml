@@ -581,6 +581,9 @@ BP 369</gco:CharacterString>
                 <gmd:name>
                   <gco:CharacterString>Téléchargement simple (Atom) du jeu et des documents associés via intranet</gco:CharacterString>
                 </gmd:name>
+                <gmd:function>
+                  <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download"/>
+                </gmd:function>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
           </gmd:MD_DigitalTransferOptions>
