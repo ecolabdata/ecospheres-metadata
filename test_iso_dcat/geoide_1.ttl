@@ -38,6 +38,8 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
   dcterms:title "Atlas des ZAC parisiennes sur le site internet de la DRIEA IF"@fr ;
   dcterms:description "Cartes produites par l'UDEA 75 à partir du jeu de données \"Délimitation des Zones d'Aménagement Concerté (ZAC) de Paris\"."@fr .
 
+<http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations> a dcterms:RightsStatement .
+<https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> a dcterms:LicenseDocument .
 <http://www.opengeospatial.org/standards/wms> a dcterms:Standard .
 <http://www.opengeospatial.org/standards/wfs> a dcterms:Standard .
 []
@@ -159,20 +161,11 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
     a dcat:Distribution ;
     dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via internet"@fr ;
     dcat:accessURL <https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset> ;
-    dcterms:license [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
-    ] ;
-    dcterms:accessRights [
+    dcterms:accessRights <http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations>, [
       a dcterms:RightsStatement ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
     ] ;
+    dcterms:license <https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> ;
     adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
     dcterms:format [
       a dcterms:MediaType ;
@@ -183,20 +176,11 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
     a dcat:Distribution ;
     dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via intranet"@fr ;
     dcat:accessURL <https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset> ;
-    dcterms:license [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
-    ] ;
-    dcterms:accessRights [
+    dcterms:accessRights <http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations>, [
       a dcterms:RightsStatement ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
     ] ;
+    dcterms:license <https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> ;
     adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
     dcterms:format [
       a dcterms:MediaType ;
@@ -214,20 +198,11 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
       dcterms:conformsTo <http://www.opengeospatial.org/standards/wms>
     ] ;
     dcat:accessURL <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map&service=WMS&request=GetCapabilities> ;
-    dcterms:license [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
-    ] ;
-    dcterms:accessRights [
+    dcterms:accessRights <http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations>, [
       a dcterms:RightsStatement ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
     ] ;
+    dcterms:license <https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> ;
     adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
     dcterms:format [
       a dcterms:MediaType ;
@@ -245,20 +220,11 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
       dcterms:conformsTo <http://www.opengeospatial.org/standards/wfs>
     ] ;
     dcat:accessURL <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map&service=WFS&request=GetCapabilities> ;
-    dcterms:license [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
-    ] ;
-    dcterms:accessRights [
+    dcterms:accessRights <http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations>, [
       a dcterms:RightsStatement ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
     ] ;
+    dcterms:license <https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> ;
     adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
     dcterms:format [
       a dcterms:MediaType ;
@@ -276,20 +242,11 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
       dcterms:conformsTo <http://www.opengeospatial.org/standards/wms>
     ] ;
     dcat:accessURL <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map&service=WMS&request=GetCapabilities> ;
-    dcterms:license [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
-    ] ;
-    dcterms:accessRights [
+    dcterms:accessRights <http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations>, [
       a dcterms:RightsStatement ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
     ] ;
+    dcterms:license <https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> ;
     adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
     dcterms:format [
       a dcterms:MediaType ;
@@ -307,20 +264,11 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
       dcterms:conformsTo <http://www.opengeospatial.org/standards/wfs>
     ] ;
     dcat:accessURL <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map&service=WFS&request=GetCapabilities> ;
-    dcterms:license [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
-    ], [
-      a dcterms:LicenseDocument ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
-    ] ;
-    dcterms:accessRights [
+    dcterms:accessRights <http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations>, [
       a dcterms:RightsStatement ;
-      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
     ] ;
+    dcterms:license <https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf> ;
     adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
     dcterms:format [
       a dcterms:MediaType ;
