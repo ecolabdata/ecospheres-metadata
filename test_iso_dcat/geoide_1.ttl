@@ -12,6 +12,8 @@
 @prefix gsp: <http://www.opengis.net/ont/geosparql#> .
 @prefix ns0: <https://www.iana.org/assignments/media-types/application/vnd.geo+> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
 
 geodcatap: a dcterms:Standard .
 <http://publications.europa.eu/resource/authority/language/FRE> a dcterms:LinguisticSystem .
@@ -36,21 +38,13 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
   dcterms:title "Atlas des ZAC parisiennes sur le site internet de la DRIEA IF"@fr ;
   dcterms:description "Cartes produites par l'UDEA 75 à partir du jeu de données \"Délimitation des Zones d'Aménagement Concerté (ZAC) de Paris\"."@fr .
 
-<https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset>
-  a foaf:Document ;
-  dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via internet"@fr .
-
-<https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset>
-  a foaf:Document ;
-  dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via intranet"@fr .
-
 <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map>
   a foaf:Document ;
-  dcterms:title "URL de base des services wms/wfs sur internet"@fr .
+  dcterms:title "URL de base du service WMS sur internet"@fr, "URL de base du service WFS sur internet"@fr .
 
 <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map>
   a foaf:Document ;
-  dcterms:title "URL de base des services wms/wfs sur intranet"@fr .
+  dcterms:title "URL de base du service WMS sur intranet"@fr, "URL de base du service WFS sur intranet"@fr .
 
 []
   foaf:isPrimaryTopicOf [
@@ -105,7 +99,7 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
   a dcat:Dataset ;
   dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResourceType/dataset> ;
   dcterms:title "Délimitation des Zones d’Aménagement Concerté (ZAC) de Paris"@fr ;
-  dcterms:description "La table L_ZAC_S_075 recense les zones d’aménagement concerté de la Ville de Paris depuis 2004. La table est mise à jour selon l’actualité. Y sont consignées : - les ZAC en cours ; - les ZAC projetées, à court ou moyen terme par la collectivité, dont le dossier de création n’a pas encore été approuvé mais sur lesquelles une procédure de concertation a été lancée ; - les anciennes ZAC, supprimées depuis 2004."@fr ;
+  dcterms:description "La table L_ZAC_S_075 recense les zones d’aménagement concerté de la Ville de Paris depuis 2004. La table est mise à jour selon l’actualité. Y sont consignées : - les ZAC en cours ; - les ZAC projetées, à court ou moyen terme par la collectivité, dont le dossier de création n’a pas encore été approuvé mais sur lesquelles une procédure de concertation a été lancée ; - les anciennes ZAC, supprimées depuis 2004."@fr ;
   dcterms:accrualPeriodicity <http://inspire.ec.europa.eu/metadata-codelist/MaintenanceFrequency/asNeeded> ;
   dcterms:subject <http://inspire.ec.europa.eu/metadata-codelist/TopicCategory/planningCadastre> ;
   dcat:theme [
@@ -138,7 +132,7 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
   dcterms:created "2011-01-01"^^xsd:date ;
   dcterms:provenance [
     a dcterms:ProvenanceStatement ;
-    rdfs:label "DÉLIMITATION DES ZONES Les périmètres de ZAC sont numérisés sur la base des plans annexés aux délibérations relatives aux zones. Considérant la qualité modérée de certaines de ces représentations graphiques, la délimitation est largement tributaire de l’interprétation du cartographe et l’exactitude des périmètres n’est pas garantie. Les contours ZAC supprimées avant le 1er janvier 2017 ont été tracés sur la base de la BDOrtho de l’IGN (millésime variable suivant la date de la numérisation). Ces périmètres grossiers ne sont pas adaptés à une visualisation à grande échelle. Les contours des ZAC en cours, en projet et supprimées après le 1er janvier 2017 ont une précision cadastrale. Sauf lorsque la source graphique ne laisse aucun doute sur le fait qu’une limite ne suit ni les voies ni le parcellaire, ils sont calés : – sur les géométries des parcelles du Plan Cadastral Informatisé Vecteur de la DGFiP (millésime variable suivant la date de numérisation, donnée disponible sur data.gouv.fr) lorsque la forme et la position du trait sur le plan source est cohérente avec celle du parcellaire ; – sur le filaire de voirie (donnée Tronçon Voie de l’APUR, disponible sur opendata.apur.org sous licence ODbL, jusqu’à la mise à jour d’octobre 2018, puis la donnée Tronçon Voie de la Ville de Paris, disponible sur opendata.paris.fr sous licence ODbL) lorsqu’il est apparent sur le plan source que la limite correspond au milieu d’une voie. La plupart des périmètres de ZAC combinent ces deux méthodes de délimitation. D’une manière générale, le calage n’est pas topologique – sauf pour certaines ZAC dont le contour est entièrement basé sur le parcellaire. Pour ces ZAC, l’attribut prec_geom prend la valeur 0. La topologie interne à la table est assurée (sauf en cas de superposition légitime de périmètres). DONNÉES ATTRIBUTAIRES Les données attributaires sont collectées par le pôle planification urbaine et aménagement durable de l’UDEA75 dans les délibérations du Conseil de Paris relatives aux ZAC et leurs annexes. Pour les ZAC en projet, les dossiers de concertation et d’étude d’impact peuvent également être utilisés. À cette date, les attributs sont renseignés que pour les ZAC en cours, en projet ou supprimées après le 1er janvier 2017. Dans les champs relatifs au programme de la ZAC, une valeur nulle doit être interprétée comme une absence d’information disponible sur le point considéré. HISTORIQUE DES MODIFICATIONS (depuis 2016-12) 2019-05-14 : Consolidation de l’attribut l_nat_ref. 2019-05-07 : Restructuration de la table, avec ajout de nombreux champs (notamment suivi des logements étudiant, des surfaces hôtelières, et présence/absence de catégories d'équipements), dans le cadre de la base régionale des ZAC portée par la DRIEA IF. Mise à jour des données. 2019-01-23 : Compléments sur le programme de la ZAC Bédier-Oudiné. 2019-01-14 : Reprise de la délimitation du périmètre du projet de ZAC Bédier-Oudiné (et ajustement marginal, en conséquence, des périmètres des ZAC Paris Rive Gauche et Bédier Porte d’Ivry), ajout du projet de ZAC Python-Duvernois. 2018-10-29 : Prise en compte de la suppression de la ZAC Boucicaut par le Conseil de Paris des 24, 25 et 26 septembre 2018. 2018-08-01 : Prise en compte des décisions de création/réalisation des ZAC Chapelle Charbon 1ère phase et Bercy-Charenton, approuvées par le Conseil de Paris des 2, 3, 4 et 5 juillet 2018. 2018-06-04 : Précision du périmètre de la ZAC Gare des Mines Fillettes par délibération 2018 DU 69 Précisions et/ou corrections sur le programme de la ZAC Chapelle-Charbon. 2018-05-02 : Précisions et/ou corrections mineures apportées dans les ZAC Château des Rentiers, Pajol, Porte de Vincennes et Bercy-Charenton. Ajout des attributs observ, com_geom, ctrl_geom qui permettent de qualifier la donnée : source des données, référentiel utilisé pour dessiner les périmètres des ZAC. 2018-02-02 : Précisions et/ou corrections sur les programmes des ZAC Chapelle-Charbon, Bercy-Charenton et Paris Rive Gauche. 2018-01-10 : Correction de coquilles. 2017-12-11 : Correction d’une erreur sur le programme des surfaces de la ZAC Pajol. 2017-12-08 : Refonte intégrale de la structure de la base de données. Fiabilisation des informations attributaires et des géométries pour les ZAC en cours et en projet. Prise en compte des délibérations du Conseil de Paris des 25, 26 et 27 septembre 2017. Les géométries ont été tracées sur la base du millésime 2017-10-12 du plan cadastral informatisé vecteur (version diffusée par Etalab au format geojson sur data.gouv.fr) et de la donnée Tronçon de Voie actualité 2017. 2017-01-11 : Suite, notamment, au Conseil de Paris des 12, 13, 14 et 15 décembre 2016, mise à jour de la date prévisionnelle de clôture pour la ZAC Beaujon (prolongée jusqu’en 2020) et de l’aménageur des ZAC Saint-Vincent-de-Paul et Cardinet-Chalabre (Paris Batignolles Aménagement). 2016-12-20 : La ZAC Saint-Vincent-de-Paul a été créée par délibération au Conseil de Paris des 12, 13, 14 et 15 décembre 2016, elle passe du statut « en projet » à « en cours »."@fr
+    rdfs:label "DÉLIMITATION DES ZONES Les périmètres de ZAC sont numérisés sur la base des plans annexés aux délibérations relatives aux zones. Considérant la qualité modérée de certaines de ces représentations graphiques, la délimitation est largement tributaire de l’interprétation du cartographe et l’exactitude des périmètres n’est pas garantie. Les contours ZAC supprimées avant le 1er janvier 2017 ont été tracés sur la base de la BDOrtho de l’IGN (millésime variable suivant la date de la numérisation). Ces périmètres grossiers ne sont pas adaptés à une visualisation à grande échelle. Les contours des ZAC en cours, en projet et supprimées après le 1er janvier 2017 ont une précision cadastrale. Sauf lorsque la source graphique ne laisse aucun doute sur le fait qu’une limite ne suit ni les voies ni le parcellaire, ils sont calés : – sur les géométries des parcelles du Plan Cadastral Informatisé Vecteur de la DGFiP (millésime variable suivant la date de numérisation, donnée disponible sur data.gouv.fr) lorsque la forme et la position du trait sur le plan source est cohérente avec celle du parcellaire ; – sur le filaire de voirie (donnée Tronçon Voie de l’APUR, disponible sur opendata.apur.org sous licence ODbL, jusqu’à la mise à jour d’octobre 2018, puis la donnée Tronçon Voie de la Ville de Paris, disponible sur opendata.paris.fr sous licence ODbL) lorsqu’il est apparent sur le plan source que la limite correspond au milieu d’une voie. La plupart des périmètres de ZAC combinent ces deux méthodes de délimitation. D’une manière générale, le calage n’est pas topologique – sauf pour certaines ZAC dont le contour est entièrement basé sur le parcellaire. Pour ces ZAC, l’attribut prec_geom prend la valeur 0. La topologie interne à la table est assurée (sauf en cas de superposition légitime de périmètres). DONNÉES ATTRIBUTAIRES Les données attributaires sont collectées par le pôle planification urbaine et aménagement durable de l’UDEA75 dans les délibérations du Conseil de Paris relatives aux ZAC et leurs annexes. Pour les ZAC en projet, les dossiers de concertation et d’étude d’impact peuvent également être utilisés. À cette date, les attributs sont renseignés que pour les ZAC en cours, en projet ou supprimées après le 1er janvier 2017. Dans les champs relatifs au programme de la ZAC, une valeur nulle doit être interprétée comme une absence d’information disponible sur le point considéré. HISTORIQUE DES MODIFICATIONS (depuis 2016-12) 2019-05-14 : Consolidation de l’attribut l_nat_ref. 2019-05-07 : Restructuration de la table, avec ajout de nombreux champs (notamment suivi des logements étudiant, des surfaces hôtelières, et présence/absence de catégories d'équipements), dans le cadre de la base régionale des ZAC portée par la DRIEA IF. Mise à jour des données. 2019-01-23 : Compléments sur le programme de la ZAC Bédier-Oudiné. 2019-01-14 : Reprise de la délimitation du périmètre du projet de ZAC Bédier-Oudiné (et ajustement marginal, en conséquence, des périmètres des ZAC Paris Rive Gauche et Bédier Porte d’Ivry), ajout du projet de ZAC Python-Duvernois. 2018-10-29 : Prise en compte de la suppression de la ZAC Boucicaut par le Conseil de Paris des 24, 25 et 26 septembre 2018. 2018-08-01 : Prise en compte des décisions de création/réalisation des ZAC Chapelle Charbon 1ère phase et Bercy-Charenton, approuvées par le Conseil de Paris des 2, 3, 4 et 5 juillet 2018. 2018-06-04 : Précision du périmètre de la ZAC Gare des Mines Fillettes par délibération 2018 DU 69 Précisions et/ou corrections sur le programme de la ZAC Chapelle-Charbon. 2018-05-02 : Précisions et/ou corrections mineures apportées dans les ZAC Château des Rentiers, Pajol, Porte de Vincennes et Bercy-Charenton. Ajout des attributs observ, com_geom, ctrl_geom qui permettent de qualifier la donnée : source des données, référentiel utilisé pour dessiner les périmètres des ZAC. 2018-02-02 : Précisions et/ou corrections sur les programmes des ZAC Chapelle-Charbon, Bercy-Charenton et Paris Rive Gauche. 2018-01-10 : Correction de coquilles. 2017-12-11 : Correction d’une erreur sur le programme des surfaces de la ZAC Pajol. 2017-12-08 : Refonte intégrale de la structure de la base de données. Fiabilisation des informations attributaires et des géométries pour les ZAC en cours et en projet. Prise en compte des délibérations du Conseil de Paris des 25, 26 et 27 septembre 2017. Les géométries ont été tracées sur la base du millésime 2017-10-12 du plan cadastral informatisé vecteur (version diffusée par Etalab au format geojson sur data.gouv.fr) et de la donnée Tronçon de Voie actualité 2017. 2017-01-11 : Suite, notamment, au Conseil de Paris des 12, 13, 14 et 15 décembre 2016, mise à jour de la date prévisionnelle de clôture pour la ZAC Beaujon (prolongée jusqu’en 2020) et de l’aménageur des ZAC Saint-Vincent-de-Paul et Cardinet-Chalabre (Paris Batignolles Aménagement). 2016-12-20 : La ZAC Saint-Vincent-de-Paul a été créée par délibération au Conseil de Paris des 12, 13, 14 et 15 décembre 2016, elle passe du statut « en projet » à « en cours »."@fr
   ] ;
   dcterms:conformsTo <http://www.opengis.net/def/crs/EPSG/0/2154> ;
   dqv:hasQualityMeasurement [
@@ -165,7 +159,57 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
       dcterms:description "See the referenced specification"@fr
     ]
   ] ;
-  dcat:landingPage <http://catalogue.geo-ide.developpement-durable.gouv.fr/catalogue/srv/fre/catalog.search#/metadata/fr-120066022-jdd-a307d028-d9d2-4605-a1e5-8d31bc573bef>, <https://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-a307d028-d9d2-4605-a1e5-8d31bc573bef>, <http://www.driea.ile-de-france.developpement-durable.gouv.fr/atlas-des-zones-d-amenagement-concerte-de-paris-a5574.html>, <https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset>, <https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset>, <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map>, <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map> ;
+  dcat:landingPage <http://catalogue.geo-ide.developpement-durable.gouv.fr/catalogue/srv/fre/catalog.search#/metadata/fr-120066022-jdd-a307d028-d9d2-4605-a1e5-8d31bc573bef>, <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map>, <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map> ;
+  foaf:page <https://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-a307d028-d9d2-4605-a1e5-8d31bc573bef>, <http://www.driea.ile-de-france.developpement-durable.gouv.fr/atlas-des-zones-d-amenagement-concerte-de-paris-a5574.html> ;
+  dcat:distribution [
+    a dcat:Distribution ;
+    dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via internet"@fr ;
+    dcat:accessURL <https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ], [
+    a dcat:Distribution ;
+    dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via intranet"@fr ;
+    dcat:accessURL <https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=23811dae-62cc-439c-bcf2-9159fe92cba2&dataType=dataset> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ] ;
   dcat:contactPoint [
     a vcard:Organization ;
     vcard:fn "Direction régionale et interdépartementale de l'équipement et de l'aménagement Île-de-France - Unité départementale de Paris"@fr ;
