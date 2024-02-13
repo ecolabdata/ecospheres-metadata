@@ -500,7 +500,7 @@ Le Ponant
             <gmd:onLine>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map&service=WMS&request=GetCapabilities</gmd:URL>
+                  <gmd:URL>https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map&amp;service=WMS&amp;request=GetCapabilities</gmd:URL>
                 </gmd:linkage>
                 <gmd:protocol>
                   <gco:CharacterString>OGC:WMS</gco:CharacterString>
@@ -520,7 +520,7 @@ Le Ponant
             <gmd:onLine>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map&service=WFS&request=GetCapabilities</gmd:URL>
+                  <gmd:URL>https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map&amp;service=WFS&amp;request=GetCapabilities</gmd:URL>
                 </gmd:linkage>
                 <gmd:protocol>
                   <gco:CharacterString>OGC:WFS</gco:CharacterString>
@@ -540,7 +540,7 @@ Le Ponant
             <gmd:onLine>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map&service=WMS&request=GetCapabilities</gmd:URL>
+                  <gmd:URL>https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map&amp;service=WMS&amp;request=GetCapabilities</gmd:URL>
                 </gmd:linkage>
                 <gmd:protocol>
                   <gco:CharacterString>OGC:WMS</gco:CharacterString>
@@ -560,7 +560,7 @@ Le Ponant
             <gmd:onLine>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map&service=WFS&request=GetCapabilities</gmd:URL>
+                  <gmd:URL>https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map&amp;service=WFS&amp;request=GetCapabilities</gmd:URL>
                 </gmd:linkage>
                 <gmd:protocol>
                   <gco:CharacterString>OGC:WFS</gco:CharacterString>
