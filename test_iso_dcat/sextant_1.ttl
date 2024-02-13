@@ -1,0 +1,386 @@
+@prefix geodcatap: <http://data.europa.eu/930/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix ns0: <https://www.iana.org/assignments/media-types/application/vnd.geo+> .
+@prefix schema: <http://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+geodcatap: a dcterms:Standard .
+<http://publications.europa.eu/resource/authority/language/FRE> a dcterms:LinguisticSystem .
+<http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/pointOfContact> a dcat:Role .
+<http://inspire.ec.europa.eu/metadata-codelist/MaintenanceFrequency/asNeeded> a dcterms:Frequency .
+geodcatap:spatialResolutionAsScale a dqv:Metric .
+<http://atlasbenthal.ifremer.fr>
+  a foaf:Document ;
+  dcterms:title "Atlas Benthal"@fr, "Atlas Benthal"@en ;
+  dcterms:description "Accès à l'Atlas Benthal"@fr, "Access to Atlas Benthal"@en .
+
+<http://doi.org/10.12770/5b956140-1351-4ae6-8b95-bb424eab96ce>
+  a foaf:Document ;
+  dcterms:title "DOI du jeu de donnée"@fr, "DOI of the dataset"@en ;
+  dcterms:description "DOI du jeu de donnée"@fr, "DOI of the dataset"@en .
+
+<http://dx.doi.org/10.18142/8>
+  a foaf:Document ;
+  dcterms:title "Campagnes EVHOE 2008-2013"@fr, "EVHOE cruises 2008-2013"@en ;
+  dcterms:description "Campagnes EVHOE 2008-2013"@fr, "EVHOE cruises 2008-2013"@en .
+
+<http://dx.doi.org/10.18142/138>
+  a foaf:Document ;
+  dcterms:title "Campagnes NURSE 2000-2013"@fr, "NURSE cruises 2000-2013"@en ;
+  dcterms:description "Campagnes NURSE 2000-2013"@fr, "NURSE cruises 2000-2013"@en .
+
+<http://dx.doi.org/10.17600/11050010>
+  a foaf:Document ;
+  dcterms:title "Campagne LANGOLF 2011"@fr, "LANGOLF cruise 2011"@en ;
+  dcterms:description "Campagne LANGOLF 2011"@fr, "LANGOLF cruise 2011"@en .
+
+<http://dx.doi.org/10.17600/12050020>
+  a foaf:Document ;
+  dcterms:title "Campagne LANGOLF 2012"@fr, "LANGOLF cruise 2012"@en ;
+  dcterms:description "Campagne LANGOLF 2012"@fr, "LANGOLF cruise 2012"@en .
+
+<http://dx.doi.org/10.17600/13050030>
+  a foaf:Document ;
+  dcterms:title "Campagne LANGOLF 2013"@fr, "LANGOLF cruise 2013"@en ;
+  dcterms:description "Campagne LANGOLF 2013"@fr, "LANGOLF cruise 2013"@en .
+
+<https://sextant.ifremer.fr/services/wms/atlas_benthal>
+  a foaf:Document ;
+  dcterms:title "IFR-ATLAS-BENTHAL-NumSysCPerm38401270-3241_HYALTUB_ATL"@fr, "IFR-ATLAS-BENTHAL-NumSysCPerm38401270-3241_HYALTUB_ATL"@en ;
+  dcterms:description "Hyalinoecia tubicola"@fr, "Hyalinoecia tubicola"@en .
+
+<http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author> a dcat:Role .
+<http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/publisher> a dcat:Role .
+[]
+  foaf:isPrimaryTopicOf [
+    a dcat:CatalogRecord ;
+    dcterms:conformsTo geodcatap: ;
+    dcterms:language <http://publications.europa.eu/resource/authority/language/FRE> ;
+    dcterms:modified "2024-01-22T16:39:08.616Z"^^xsd:dateTime ;
+    dcat:contactPoint [
+      a vcard:Individual ;
+      vcard:fn "Laffargue Pascal"@fr ;
+      vcard:organization-name "Ifremer"@fr ;
+      vcard:hasTelephone <tel:+0240374212> ;
+      vcard:hasEmail <mailto:Pascal.Laffargue@ifremer.fr> ;
+      vcard:hasAddress [
+        a vcard:Address ;
+        vcard:street-address "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+        vcard:locality "Nantes" ;
+        vcard:country-name "France"
+      ]
+    ] ;
+    prov:qualifiedAttribution [
+      a prov:Attribution ;
+      prov:agent [
+        a foaf:Person, prov:Agent ;
+        foaf:name "Laffargue Pascal"@fr ;
+        org:memberOf [
+          a foaf:Organization ;
+          foaf:name "Ifremer"@fr
+        ] ;
+        foaf:phone <tel:+0240374212> ;
+        foaf:mbox <mailto:Pascal.Laffargue@ifremer.fr> ;
+        locn:address [
+          a locn:Address ;
+          locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+          locn:postName "Nantes" ;
+          locn:adminUnitL1 "France"
+        ]
+      ] ;
+      dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/pointOfContact> ;
+      dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/pointOfContact>
+    ] ;
+    dcterms:identifier "5b956140-1351-4ae6-8b95-bb424eab96ce"^^xsd:string ;
+    dcterms:source [
+      a dcat:CatalogRecord ;
+      dcterms:modified "2024-01-22T16:39:08.616Z"^^xsd:date ;
+      cnt:characterEncoding "UTF-8"^^xsd:string ;
+      dcterms:conformsTo [
+        a dcterms:Standard ;
+        dcterms:title "ISO 19115:2003/19139 - SEXTANT"@fr ;
+        owl:versionInfo "1.0"@fr
+      ]
+    ]
+  ] ;
+  a dcat:Dataset ;
+  dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResourceType/dataset> ;
+  dcterms:title "0-Distribution des espèces invertébrés benthiques observées par les campagnes halieutiques en Atlantique"@fr, "0-Distribution of benthic invertebrate species observed during fisheries campaigns in Atlantic"@en ;
+  dcterms:description "Distribution des espèces invertébrés benthiques en Atlantique établie à partir des données de densité d'abondance relative cumulées et krigées, issues des campagnes halieutiques EVHOE (2008-2013), LANGOLF (2011-2013), NURSE (2000-2013), ORHAGO (2011-2015)"@fr, "Distribution of benthic invertebrate species in Atlantic based on cumulative and interpolated relative abundance density data from fisheries surveys EVHOE (2008-2013), LANGOLF (2011-2013), NURSE (2000-2013), ORHAGO (2011-2015)"@en ;
+  dcterms:accrualPeriodicity <http://inspire.ec.europa.eu/metadata-codelist/MaintenanceFrequency/asNeeded> ;
+  dcterms:subject <http://inspire.ec.europa.eu/metadata-codelist/TopicCategory/biota> ;
+  dcat:theme [
+    a skos:Concept ;
+    skos:prefLabel "/Milieu biologique/Espèces/Faune"@fr, "/Biological Environment/Species/Fauna"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Thèmes Sextant"@fr ;
+      dcterms:issued "2023-03-16"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "Répartition des espèces"@fr, "Species distribution"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "GEMET - INSPIRE themes, version 1.0"@fr ;
+      dcterms:issued ""^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "/Métropole/Golfe de Gascogne"@fr, "/Metropolitan France/Bay of Biscay"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Sous-regions marines"@fr ;
+      dcterms:issued "2023-03-16"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "/Métropole/Mers Celtiques"@fr, "/Metropolitan France/Celtic Seas"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Sous-regions marines"@fr ;
+      dcterms:issued "2023-03-16"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "Directive Cadre Stratégie pour le Milieu Marin (DCSMM)"@fr, "Marine Strategy Framework Directive (MSFD)"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Cadre Réglementaire - SIMM"@fr ;
+      dcterms:issued "2023-03-16"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "Directive Cadre pour la Planification de l'Espace Maritime (DCPEM)"@fr, "Maritime Spatial Planning Directive (MSP)"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Cadre Réglementaire - SIMM"@fr ;
+      dcterms:issued "2023-03-16"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "/Données dérivées/Produits composites"@fr, "/Processed data/Composite products"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Type de jeux de donnée ODATIS"@fr ;
+      dcterms:issued "2024-01-05"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "/Etat du Milieu/Espèces"@fr, "/Environmental Status/Species"@en ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Thématiques - SIMM"@fr ;
+      dcterms:issued "2023-03-16"^^xsd:date
+    ]
+  ] ;
+  dcat:keyword "Espèces benthiques"@fr, "Invertébrés"@fr, "Données marines"@fr, "Atlantique"@fr ;
+  dcterms:identifier "FR-330-715-368-00032-IFR-ATLAS-BENTHAL-Atlantique-Total-especes"^^xsd:string, "DOI:10.12770/5b956140-1351-4ae6-8b95-bb424eab96ce"^^xsd:string ;
+  dcterms:language <http://publications.europa.eu/resource/authority/language/FRE> ;
+  dcterms:spatial [
+    a dcterms:Location ;
+    locn:geometry "POLYGON((-11.333 51.867,-1.133 51.867,-1.133 43.667,-11.333 43.667,-11.333 51.867))"^^gsp:wktLiteral, "<gml:Envelope srsName=\"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"><gml:lowerCorner>-11.333 43.667</gml:lowerCorner><gml:upperCorner>-1.133 51.867</gml:upperCorner></gml:Envelope>"^^gsp:gmlLiteral, "{\"type\":\"Polygon\",\"coordinates\":[[[-11.333,51.867],[-1.133,51.867],[-1.133,43.667],[-11.333,43.667],[-11.333,51.867]]]}"^^ns0:json, "{\"type\":\"Polygon\",\"coordinates\":[[[-11.333,51.867],[-1.133,51.867],[-1.133,43.667],[-11.333,43.667],[-11.333,51.867]]]}"^^gsp:geoJSONLiteral ;
+    dcat:bbox "POLYGON((-11.333 51.867,-1.133 51.867,-1.133 43.667,-11.333 43.667,-11.333 51.867))"^^gsp:wktLiteral, "<gml:Envelope srsName=\"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"><gml:lowerCorner>-11.333 43.667</gml:lowerCorner><gml:upperCorner>-1.133 51.867</gml:upperCorner></gml:Envelope>"^^gsp:gmlLiteral, "{\"type\":\"Polygon\",\"coordinates\":[[[-11.333,51.867],[-1.133,51.867],[-1.133,43.667],[-11.333,43.667],[-11.333,51.867]]]}"^^ns0:json, "{\"type\":\"Polygon\",\"coordinates\":[[[-11.333,51.867],[-1.133,51.867],[-1.133,43.667],[-11.333,43.667],[-11.333,51.867]]]}"^^gsp:geoJSONLiteral
+  ] ;
+  dcterms:temporal [
+    a dcterms:PeriodOfTime ;
+    schema:startDate "2014-01-01T00:00:00"^^xsd:dateTime ;
+    schema:endDate "2014-12-31T00:00:00"^^xsd:dateTime ;
+    dcat:startDate "2014-01-01T00:00:00"^^xsd:dateTime ;
+    dcat:endDate "2014-12-31T00:00:00"^^xsd:dateTime
+  ] ;
+  dcterms:created "2016-09-27"^^xsd:date ;
+  dcterms:provenance [
+    a dcterms:ProvenanceStatement ;
+    rdfs:label "Données recueillies par IFREMER sur la façade ATLANTIQUE. Elle intègre les données issues des campagnes halieutiques EVHOE (2008-2013), LANGOLF (2011-2013), NURSE (2000-2013), ORHAGO (2011-2015). Les espèces considérées dans l'atlas sont les invertébrés commerciaux et non commerciaux vivant sur ou à proximité du fond. Les individus ont été prélevés par chalutage de fond, identifiés au niveau taxonomique le plus précis possible, dénombrés et pesés. Les données sont analysées sous R (version 3.0.2, R Core Team 2013, http://www.R-project.org/). Elles sont standardisées pour la ou les campagne(s) considérée(s) puis cartographiées par krigeage (méthode des voisins mobiles) en optimisant les paramètres (modèle variographique, nombre et distance des voisins). Le krigeage a été réalisé sous R à partir de la librairie RGeostats (vs 10.0.5, Renard et al. 2014)."@fr
+  ] ;
+  dcterms:conformsTo [
+    a dcterms:Standard, skos:Concept ;
+    dcterms:type <http://inspire.ec.europa.eu/glossary/SpatialReferenceSystem> ;
+    dcterms:title "WGS 84 (EPSG:4326)"@fr ;
+    skos:prefLabel "WGS 84 (EPSG:4326)"@fr ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "EPSG"@fr
+    ] ;
+    owl:versionInfo "7.9"@fr
+  ] ;
+  dqv:hasQualityMeasurement [
+    a dqv:QualityMeasurement ;
+    dqv:isMeasurementOf geodcatap:spatialResolutionAsScale ;
+    dqv:value 0.00004
+  ] ;
+  prov:wasUsedBy [
+    a prov:Activity ;
+    prov:qualifiedAssociation [
+      a prov:Association ;
+      prov:hadPlan [
+        a prov:Plan ;
+        prov:wasDerivedFrom [
+          a prov:Entity ;
+          dcterms:title "Inspire specifications"@fr ;
+          dcterms:created "2012-01-16"^^xsd:date
+        ]
+      ]
+    ] ;
+    prov:generated [
+      a prov:Entity ;
+      dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/DegreeOfConformity/notConformant> ;
+      dcterms:description "Non évalué"@fr
+    ]
+  ] ;
+  dcat:landingPage <http://atlasbenthal.ifremer.fr>, <http://doi.org/10.12770/5b956140-1351-4ae6-8b95-bb424eab96ce>, <http://dx.doi.org/10.18142/8>, <http://dx.doi.org/10.18142/138>, <http://dx.doi.org/10.17600/11050010>, <http://dx.doi.org/10.17600/12050020>, <http://dx.doi.org/10.17600/13050030>, <https://sextant.ifremer.fr/services/wms/atlas_benthal> ;
+  dcterms:creator [
+    a foaf:Person, prov:Agent ;
+    foaf:name "Laffargue Pascal"@fr ;
+    org:memberOf [
+      a foaf:Organization ;
+      foaf:name "Ifremer"@fr
+    ] ;
+    foaf:phone <tel:+0240374212> ;
+    foaf:mbox <mailto:Pascal.Laffargue@ifremer.fr> ;
+    locn:address [
+      a locn:Address ;
+      locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+      locn:postName "Nantes" ;
+      locn:adminUnitL1 "France"
+    ]
+  ], [
+    a foaf:Person, prov:Agent ;
+    foaf:name "Martin Jocelyne"@fr ;
+    org:memberOf [
+      a foaf:Organization ;
+      foaf:name "Ifremer"@fr
+    ] ;
+    foaf:phone <tel:+0240374099> ;
+    foaf:mbox <mailto:Jocelyne.Martin@ifremer.fr> ;
+    locn:address [
+      a locn:Address ;
+      locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+      locn:postName "Nantes" ;
+      locn:adminUnitL1 "France"
+    ]
+  ], [
+    a foaf:Person, prov:Agent ;
+    foaf:name "Brind'Amour Anik"@fr ;
+    org:memberOf [
+      a foaf:Organization ;
+      foaf:name "Ifremer"@fr
+    ] ;
+    foaf:phone <tel:+0240374160> ;
+    foaf:mbox <mailto:Anik.Brindamour@ifremer.fr> ;
+    locn:address [
+      a locn:Address ;
+      locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+      locn:postName "Nantes" ;
+      locn:adminUnitL1 "France"
+    ]
+  ] ;
+  prov:qualifiedAttribution [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Person, prov:Agent ;
+      foaf:name "Laffargue Pascal"@fr ;
+      org:memberOf [
+        a foaf:Organization ;
+        foaf:name "Ifremer"@fr
+      ] ;
+      foaf:phone <tel:+0240374212> ;
+      foaf:mbox <mailto:Pascal.Laffargue@ifremer.fr> ;
+      locn:address [
+        a locn:Address ;
+        locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+        locn:postName "Nantes" ;
+        locn:adminUnitL1 "France"
+      ]
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author>
+  ], [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Person, prov:Agent ;
+      foaf:name "Martin Jocelyne"@fr ;
+      org:memberOf [
+        a foaf:Organization ;
+        foaf:name "Ifremer"@fr
+      ] ;
+      foaf:phone <tel:+0240374099> ;
+      foaf:mbox <mailto:Jocelyne.Martin@ifremer.fr> ;
+      locn:address [
+        a locn:Address ;
+        locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+        locn:postName "Nantes" ;
+        locn:adminUnitL1 "France"
+      ]
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author>
+  ], [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Person, prov:Agent ;
+      foaf:name "Brind'Amour Anik"@fr ;
+      org:memberOf [
+        a foaf:Organization ;
+        foaf:name "Ifremer"@fr
+      ] ;
+      foaf:phone <tel:+0240374160> ;
+      foaf:mbox <mailto:Anik.Brindamour@ifremer.fr> ;
+      locn:address [
+        a locn:Address ;
+        locn:thoroughfare "Centre Atlantique - Rue de l'Ile d'Yeu - BP 21105 - 44311 Nantes Cedex 03" ;
+        locn:postName "Nantes" ;
+        locn:adminUnitL1 "France"
+      ]
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/author>
+  ], [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Person, prov:Agent ;
+      foaf:name "Sextant"@fr ;
+      org:memberOf [
+        a foaf:Organization ;
+        foaf:name "Ifremer"@fr
+      ] ;
+      foaf:mbox <mailto:sextant@ifremer.fr> ;
+      locn:address [
+        a locn:Address ;
+        locn:thoroughfare "Centre Bretagne - Zone de la Pointe du Diable - 29280 Plouzané" ;
+        locn:postName "Plouzané" ;
+        locn:adminUnitL1 "France"
+      ]
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/publisher> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/publisher>
+  ] ;
+  dcterms:publisher [
+    a foaf:Person, prov:Agent ;
+    foaf:name "Sextant"@fr ;
+    org:memberOf [
+      a foaf:Organization ;
+      foaf:name "Ifremer"@fr
+    ] ;
+    foaf:mbox <mailto:sextant@ifremer.fr> ;
+    locn:address [
+      a locn:Address ;
+      locn:thoroughfare "Centre Bretagne - Zone de la Pointe du Diable - 29280 Plouzané" ;
+      locn:postName "Plouzané" ;
+      locn:adminUnitL1 "France"
+    ]
+  ] .
+
