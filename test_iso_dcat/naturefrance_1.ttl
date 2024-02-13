@@ -1,0 +1,41 @@
+@prefix geodcatap: <http://data.europa.eu/930/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+geodcatap: a dcterms:Standard .
+<http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/custodian> a dcat:Role .
+[]
+  foaf:isPrimaryTopicOf [
+    a dcat:CatalogRecord ;
+    dcterms:conformsTo geodcatap: ;
+    dcterms:modified "2023-12-05T16:16:17.685Z"^^xsd:dateTime ;
+    dcterms:identifier "24f282a3-ef45-4166-8fb3-1c856e78d47b"^^xsd:string
+  ] ;
+  dcterms:title "Référentiel des pressions exercées sur la biodiversité - PressRef" ;
+  dcterms:description "Dans le cadre du Caret, un jeu de données de référence des pressions exercées sur la biodiversité a été construit. Ces pressions peuvent être d’origine anthropique ou naturelle et engendrer un effet négatif sur au moins une composante de la biodiversité (gène, espèce, écosystème). Le jeu de données est cohérent avec les besoins de croisement et les typologies internationales, quel que soit le milieu (terrestre, eau douce, marin). Le jeu de données ainsi élaboré fait partie du référentiel technique du Caret et s’applique sur le périmètre du SIB : tout le territoire français (métropole et ultra-marin). Son utilisation est libre et préconisée pour tout nouveau projet." ;
+  dcat:theme <https://data.naturefrance.fr/thesaurus/opendata#819e8287-4f3f-4298-bb62-0fdf03ff0184>, <https://data.naturefrance.fr/thesaurus/datatype#2c3f1ec6-8181-4ac0-b6ad-8705304fb9d1>, <https://data.naturefrance.fr/thesaurus/thematiques#bc0fb353-5db7-4b55-969b-bf9061a8fbd2>, <https://data.naturefrance.fr/thesaurus/thematiques#2adba6d6-a7ee-42d9-8a7f-3c1d46167adf>, <https://data.naturefrance.fr/thesaurus/thematiques#58112152-5bfc-425d-a34c-700f9b4a3f33>, <https://data.naturefrance.fr/thesaurus/thematiques#392aacf4-7949-4ae0-94c7-be308c4cbd27>, <https://data.naturefrance.fr/thesaurus/thematiques#2d476c1f-91f0-472a-821a-86ddcf507047>, <https://data.naturefrance.fr/thesaurus/thematiques#6a741fba-969e-43f0-bc09-1dadf64a4b1d>, <https://data.naturefrance.fr/thesaurus/thematiques#7d32e245-2e71-45e5-81e9-9c81a29c474f>, <https://data.naturefrance.fr/thesaurus/thematiques#e529e45b-52e2-48ad-aa0e-a26fdf543639>, <https://data.naturefrance.fr/thesaurus/dpsir#c603d579-5f44-4a91-8f30-69b621cbe744> ;
+  dcterms:created "2023-10-10"^^xsd:date ;
+  dcterms:provenance [
+    a dcterms:ProvenanceStatement ;
+    rdfs:label "Ce jeu de données a été validé côté \"métier\" par le groupe de travail \"Pressions\" animé par PatriNat en 2023, pour la standardisation par le Caret et a fait l'objet d'une approbation finale par l'OFB. Le jeu de données de référence a été élaboré en prenant pour base la typologie développée en 2021 pour la méthode d'établissement des diagnostics territoriaux de l'OFB puis en l'améliorant selon d'autres typologies de pressions existantes (DCSMM, OSPAR, rapportages DHFF et DO, UICN, etc.). Pour permettre l'interopérabilité avec le jeu de données de référence PressRef, des correspondances sont réalisées avec ces autres typologies. Le jeu de données de référence PressRef est utilisé pour le thésaurus \"Pressions sur la biodiversité\" du catalogue. Le jeu de données peut évoluer : un document d’administration détaille les règles, et les modalités pour demander des mises à jour et des évolutions."
+  ] ;
+  geodcatap:custodian [
+    a foaf:Organization, prov:Agent ;
+    foaf:name "CARET" ;
+    foaf:mbox <mailto:julie.chataigner@ofb.gouv.fr>
+  ] ;
+  prov:qualifiedAttribution [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Organization, prov:Agent ;
+      foaf:name "CARET" ;
+      foaf:mbox <mailto:julie.chataigner@ofb.gouv.fr>
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/custodian> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/custodian>
+  ] .
+
