@@ -413,6 +413,9 @@ Le Ponant
                 <gmd:name>
                   <gco:CharacterString>Vue XML des métadonnées</gco:CharacterString>
                 </gmd:name>
+                <gmd:function>
+                  <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="information"/>
+                </gmd:function>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
           </gmd:MD_DigitalTransferOptions>
@@ -436,6 +439,9 @@ Le Ponant
                 <gmd:description>
                   <gco:CharacterString>Cartes produites par l'UDEA 75 à partir du jeu de données "Délimitation des Zones d'Aménagement Concerté (ZAC) de Paris".</gco:CharacterString>
                 </gmd:description>
+                <gmd:function>
+                  <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="information"/>
+                </gmd:function>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
           </gmd:MD_DigitalTransferOptions>
@@ -456,6 +462,9 @@ Le Ponant
                 <gmd:name>
                   <gco:CharacterString>Téléchargement simple (Atom) du jeu et des documents associés via internet</gco:CharacterString>
                 </gmd:name>
+                <gmd:function>
+                  <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download"/>
+                </gmd:function>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
           </gmd:MD_DigitalTransferOptions>
@@ -476,6 +485,9 @@ Le Ponant
                 <gmd:name>
                   <gco:CharacterString>Téléchargement simple (Atom) du jeu et des documents associés via intranet</gco:CharacterString>
                 </gmd:name>
+                <gmd:function>
+                  <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download"/>
+                </gmd:function>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
           </gmd:MD_DigitalTransferOptions>
@@ -483,15 +495,18 @@ Le Ponant
         <gmd:transferOptions>
           <gmd:MD_DigitalTransferOptions>
             <gmd:unitsOfDistribution>
-              <gco:CharacterString>URL de base des services wms/wfs</gco:CharacterString>
+              <gco:CharacterString>URL de base du service WMS</gco:CharacterString>
             </gmd:unitsOfDistribution>
             <gmd:onLine>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
                   <gmd:URL>https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map</gmd:URL>
                 </gmd:linkage>
+                <gmd:protocol>
+                  <gco:CharacterString>OGC:WMS</gco:CharacterString>
+                </gmd:protocol>
                 <gmd:name>
-                  <gco:CharacterString>URL de base des services wms/wfs sur internet</gco:CharacterString>
+                  <gco:CharacterString>URL de base du service WMS sur internet</gco:CharacterString>
                 </gmd:name>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
@@ -500,15 +515,58 @@ Le Ponant
         <gmd:transferOptions>
           <gmd:MD_DigitalTransferOptions>
             <gmd:unitsOfDistribution>
-              <gco:CharacterString>URL de base des services wms/wfs</gco:CharacterString>
+              <gco:CharacterString>URL de base du service WFS</gco:CharacterString>
+            </gmd:unitsOfDistribution>
+            <gmd:onLine>
+              <gmd:CI_OnlineResource>
+                <gmd:linkage>
+                  <gmd:URL>https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.internet.map</gmd:URL>
+                </gmd:linkage>
+                <gmd:protocol>
+                  <gco:CharacterString>OGC:WFS</gco:CharacterString>
+                </gmd:protocol>
+                <gmd:name>
+                  <gco:CharacterString>URL de base du service WFS sur internet</gco:CharacterString>
+                </gmd:name>
+              </gmd:CI_OnlineResource>
+            </gmd:onLine>
+          </gmd:MD_DigitalTransferOptions>
+        </gmd:transferOptions>
+        <gmd:transferOptions>
+          <gmd:MD_DigitalTransferOptions>
+            <gmd:unitsOfDistribution>
+              <gco:CharacterString>URL de base du service WMS</gco:CharacterString>
             </gmd:unitsOfDistribution>
             <gmd:onLine>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
                   <gmd:URL>https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map</gmd:URL>
                 </gmd:linkage>
+                <gmd:protocol>
+                  <gco:CharacterString>OGC:WMS</gco:CharacterString>
+                </gmd:protocol>
                 <gmd:name>
-                  <gco:CharacterString>URL de base des services wms/wfs sur intranet</gco:CharacterString>
+                  <gco:CharacterString>URL de base du service WMS sur intranet</gco:CharacterString>
+                </gmd:name>
+              </gmd:CI_OnlineResource>
+            </gmd:onLine>
+          </gmd:MD_DigitalTransferOptions>
+        </gmd:transferOptions>
+        <gmd:transferOptions>
+          <gmd:MD_DigitalTransferOptions>
+            <gmd:unitsOfDistribution>
+              <gco:CharacterString>URL de base du service WFS</gco:CharacterString>
+            </gmd:unitsOfDistribution>
+            <gmd:onLine>
+              <gmd:CI_OnlineResource>
+                <gmd:linkage>
+                  <gmd:URL>https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_4942761/23811dae-62cc-439c-bcf2-9159fe92cba2.intranet.map</gmd:URL>
+                </gmd:linkage>
+                <gmd:protocol>
+                  <gco:CharacterString>OGC:WFS</gco:CharacterString>
+                </gmd:protocol>
+                <gmd:name>
+                  <gco:CharacterString>URL de base du service WFS sur intranet</gco:CharacterString>
                 </gmd:name>
               </gmd:CI_OnlineResource>
             </gmd:onLine>
