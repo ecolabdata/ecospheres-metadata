@@ -4,6 +4,12 @@
     <gmd:fileIdentifier>
       <gco:CharacterString>f00ce900-4381-4be2-aed5-991208499b79</gco:CharacterString>
     </gmd:fileIdentifier>
+    <gmd:hierarchyLevel>
+      <gmd:MD_ScopeCode codeListValue="dataset" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode">dataset</gmd:MD_ScopeCode>
+    </gmd:hierarchyLevel>
+    <gmd:hierarchyLevelName>
+      <gco:CharacterString>jeu de données</gco:CharacterString>
+    </gmd:hierarchyLevelName>
     <gmd:dateStamp>
       <gco:DateTime>2023-07-17T10:01:32.18Z</gco:DateTime>
     </gmd:dateStamp>
