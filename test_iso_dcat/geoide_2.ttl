@@ -1,0 +1,218 @@
+@prefix geodcatap: <http://data.europa.eu/930/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix ns0: <https://www.iana.org/assignments/media-types/application/vnd.geo+> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+geodcatap: a dcterms:Standard .
+<http://publications.europa.eu/resource/authority/language/FRE> a dcterms:LinguisticSystem .
+<http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/pointOfContact> a dcat:Role .
+<http://www.opengis.net/def/crs/EPSG/0/2154>
+  a dcterms:Standard ;
+  dcterms:type <http://inspire.ec.europa.eu/glossary/SpatialReferenceSystem> .
+
+geodcatap:spatialResolutionAsScale a dqv:Metric .
+<http://catalogue.geo-ide.developpement-durable.gouv.fr/catalogue/srv/fre/catalog.search#/metadata/fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>
+  a foaf:Document ;
+  dcterms:title "Vue HTML des métadonnées sur internet"@fr .
+
+<https://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>
+  a foaf:Document ;
+  dcterms:title "Vue XML des métadonnées"@fr .
+
+<https://www.landes.gouv.fr/Actions-de-l-Etat/Eau.-Environnement.-Risques-Naturels-et-Technologiques/Eau-et-Peche/Ouvrages-Travaux-Usages/Autorisation-de-prelevement-d-eau>
+  a foaf:Document ;
+  dcterms:title "Autorisation de prélèvement d’eau"@fr ;
+  dcterms:description "Site de la Préfecture des Landes - Autorisation de prélèvement d’eau"@fr .
+
+<http://piece-jointe-carto.developpement-durable.gouv.fr/DEPT040A/SPE/IRRIGATION/L_AUTORISATION_PRELEVEMENT_HIVER_HORS_ZRE_COMPLEMENT_2022_2023.csv>
+  a foaf:Document ;
+  dcterms:title "Complément - Données non géolocalisées - hiver"@fr ;
+  dcterms:description "Complément - Données non géolocalisées - hiver"@fr .
+
+<https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>
+  a foaf:Document ;
+  dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via internet"@fr .
+
+<https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>
+  a foaf:Document ;
+  dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via intranet"@fr .
+
+<https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map>
+  a foaf:Document ;
+  dcterms:title "URL de base des services wms/wfs sur internet"@fr .
+
+<https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map>
+  a foaf:Document ;
+  dcterms:title "URL de base des services wms/wfs sur intranet"@fr .
+
+<http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/owner> a dcat:Role .
+[]
+  foaf:isPrimaryTopicOf [
+    a dcat:CatalogRecord ;
+    dcterms:conformsTo geodcatap: ;
+    dcterms:language <http://publications.europa.eu/resource/authority/language/FRE> ;
+    dcterms:modified "2024-01-17T08:52:48.310+01:00"^^xsd:dateTime ;
+    dcat:contactPoint [
+      a vcard:Organization ;
+      vcard:fn "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
+      vcard:hasTelephone <tel:+0558513034> ;
+      vcard:hasEmail <mailto:ddtm-adl@landes.gouv.fr> ;
+      vcard:hasURL <http://www.landes.gouv.fr/> ;
+      vcard:hasAddress [
+        a vcard:Address ;
+        vcard:street-address "351, boulevard Saint-Médard BP 369" ;
+        vcard:locality "Mont-de-Marsan Cedex" ;
+        vcard:postal-code "40012" ;
+        vcard:country-name "France"
+      ]
+    ] ;
+    prov:qualifiedAttribution [
+      a prov:Attribution ;
+      prov:agent [
+        a foaf:Organization, prov:Agent ;
+        foaf:name "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
+        foaf:phone <tel:+0558513034> ;
+        foaf:mbox <mailto:ddtm-adl@landes.gouv.fr> ;
+        foaf:workplaceHomepage <http://www.landes.gouv.fr/> ;
+        locn:address [
+          a locn:Address ;
+          locn:thoroughfare "351, boulevard Saint-Médard BP 369" ;
+          locn:postName "Mont-de-Marsan Cedex" ;
+          locn:postCode "40012" ;
+          locn:adminUnitL1 "France"
+        ]
+      ] ;
+      dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/pointOfContact> ;
+      dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/pointOfContact>
+    ] ;
+    dcterms:identifier "fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993"^^xsd:string ;
+    dcterms:source [
+      a dcat:CatalogRecord ;
+      dcterms:modified "2024-01-17T08:52:48.310+01:00"^^xsd:date ;
+      dcterms:conformsTo [
+        a dcterms:Standard ;
+        dcterms:title "ISO 19115"@fr ;
+        owl:versionInfo "2003 Cor.1:2006"@fr
+      ]
+    ]
+  ] ;
+  a dcat:Dataset ;
+  dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResourceType/dataset> ;
+  dcterms:title "Campagne d'irrigation hors-étiage 2022-2023, période hivernale, hors ZRE - Département des Landes"@fr ;
+  dcterms:description "Forages instruits au titre de la loi sur l'eau Référence réglementaire : la rubrique 1.1.1.0 du décret n°2006-881 du 17 juillet 2006 Données relatives au Registre des autorisations détenues au titre de la loi sur l'eau pour la campagne d'irrigation hors-étiage 2022-2023, période hivernale, hors ZRE. Complément : Un jeu de données non géolocalisé complémentaire à cette ressource est disponible dans la fiche de métadonnées en plus des services de téléchargement afférent à la donnée géolocalisée : L_AUTORISATION_PRELEVEMENT_HIVER_HORS_ZRE_COMPLEMENT_2022_2023.csv"@fr ;
+  dcterms:subject <http://inspire.ec.europa.eu/metadata-codelist/TopicCategory/planningCadastre>, <http://inspire.ec.europa.eu/metadata-codelist/TopicCategory/environment>, <http://inspire.ec.europa.eu/metadata-codelist/TopicCategory/farming>, <http://inspire.ec.europa.eu/metadata-codelist/TopicCategory/structure> ;
+  dcat:theme [
+    a skos:Concept ;
+    skos:prefLabel "Zones de gestion, de restriction ou de réglementation et unités de déclaration"@fr ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "GEMET - INSPIRE themes, version 1.0"@fr ;
+      dcterms:issued "2008-06-01"^^xsd:date
+    ]
+  ], [
+    a skos:Concept ;
+    skos:prefLabel "Eau/Utilisation Autre"@fr ;
+    skos:inScheme [
+      a skos:ConceptScheme ;
+      dcterms:title "Arborescence thématique de la COVADIS"@fr ;
+      dcterms:issued "2009-04-06"^^xsd:date
+    ]
+  ] ;
+  dcat:keyword "eau"@fr, "forage"@fr, "hiver"@fr, "irrigation"@fr, "prélèvement"@fr, "données ouvertes"@fr ;
+  dcterms:identifier "http://descartes-dev.cete-mediterranee.i2/90dd3756-8b73-4dbc-a99f-01503b507228"^^xsd:anyURI ;
+  dcterms:language <http://publications.europa.eu/resource/authority/language/FRE> ;
+  dcterms:spatial [
+    a dcterms:Location ;
+    locn:geometry "POLYGON((0.13680026 44.53219604,-1.52486992 44.53219604,-1.52486992 43.48859406,0.13680026 43.48859406,0.13680026 44.53219604))"^^gsp:wktLiteral, "<gml:Envelope srsName=\"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"><gml:lowerCorner>0.13680026 43.48859406</gml:lowerCorner><gml:upperCorner>-1.52486992 44.53219604</gml:upperCorner></gml:Envelope>"^^gsp:gmlLiteral, "{\"type\":\"Polygon\",\"coordinates\":[[[0.13680026,44.53219604],[-1.52486992,44.53219604],[-1.52486992,43.48859406],[0.13680026,43.48859406],[0.13680026,44.53219604]]]}"^^ns0:json, "{\"type\":\"Polygon\",\"coordinates\":[[[0.13680026,44.53219604],[-1.52486992,44.53219604],[-1.52486992,43.48859406],[0.13680026,43.48859406],[0.13680026,44.53219604]]]}"^^gsp:geoJSONLiteral ;
+    dcat:bbox "POLYGON((0.13680026 44.53219604,-1.52486992 44.53219604,-1.52486992 43.48859406,0.13680026 43.48859406,0.13680026 44.53219604))"^^gsp:wktLiteral, "<gml:Envelope srsName=\"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"><gml:lowerCorner>0.13680026 43.48859406</gml:lowerCorner><gml:upperCorner>-1.52486992 44.53219604</gml:upperCorner></gml:Envelope>"^^gsp:gmlLiteral, "{\"type\":\"Polygon\",\"coordinates\":[[[0.13680026,44.53219604],[-1.52486992,44.53219604],[-1.52486992,43.48859406],[0.13680026,43.48859406],[0.13680026,44.53219604]]]}"^^ns0:json, "{\"type\":\"Polygon\",\"coordinates\":[[[0.13680026,44.53219604],[-1.52486992,44.53219604],[-1.52486992,43.48859406],[0.13680026,43.48859406],[0.13680026,44.53219604]]]}"^^gsp:geoJSONLiteral
+  ] ;
+  dcterms:modified "2024-01-16"^^xsd:date ;
+  dcterms:issued "2023-03-10"^^xsd:date ;
+  dcterms:created "2023-03-09"^^xsd:date ;
+  dcterms:provenance [
+    a dcterms:ProvenanceStatement ;
+    rdfs:label "Issu de la plateforme Irriscope"@fr
+  ] ;
+  dcterms:conformsTo <http://www.opengis.net/def/crs/EPSG/0/2154> ;
+  dqv:hasQualityMeasurement [
+    a dqv:QualityMeasurement ;
+    dqv:isMeasurementOf geodcatap:spatialResolutionAsScale ;
+    dqv:value 0.0001
+  ] ;
+  prov:wasUsedBy [
+    a prov:Activity ;
+    prov:qualifiedAssociation [
+      a prov:Association ;
+      prov:hadPlan [
+        a prov:Plan ;
+        prov:wasDerivedFrom [
+          a prov:Entity ;
+          dcterms:title "Règlement (UE) No 1088/2010"@fr ;
+          dcterms:issued "2010-11-23"^^xsd:date
+        ]
+      ]
+    ] ;
+    prov:generated [
+      a prov:Entity ;
+      dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/DegreeOfConformity/notEvaluated> ;
+      dcterms:description "See the referenced specification"@fr
+    ]
+  ] ;
+  dcat:landingPage <http://catalogue.geo-ide.developpement-durable.gouv.fr/catalogue/srv/fre/catalog.search#/metadata/fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>, <https://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>, <https://www.landes.gouv.fr/Actions-de-l-Etat/Eau.-Environnement.-Risques-Naturels-et-Technologiques/Eau-et-Peche/Ouvrages-Travaux-Usages/Autorisation-de-prelevement-d-eau>, <http://piece-jointe-carto.developpement-durable.gouv.fr/DEPT040A/SPE/IRRIGATION/L_AUTORISATION_PRELEVEMENT_HIVER_HORS_ZRE_COMPLEMENT_2022_2023.csv>, <https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>, <https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>, <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map>, <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map> ;
+  dcterms:rightsHolder [
+    a foaf:Organization, prov:Agent ;
+    foaf:name "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
+    foaf:phone <tel:+0558513034> ;
+    foaf:mbox <mailto:ddtm-adl@landes.gouv.fr> ;
+    foaf:workplaceHomepage <http://www.landes.gouv.fr/> ;
+    locn:address [
+      a locn:Address ;
+      locn:thoroughfare "351, boulevard Saint-Médard BP 369" ;
+      locn:postName "Mont-de-Marsan Cedex" ;
+      locn:postCode "40012" ;
+      locn:adminUnitL1 "France"
+    ]
+  ], [
+    a foaf:Organization, prov:Agent ;
+    foaf:name "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
+    foaf:mbox <mailto:ddtm-adl@landes.gouv.fr>
+  ] ;
+  prov:qualifiedAttribution [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Organization, prov:Agent ;
+      foaf:name "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
+      foaf:phone <tel:+0558513034> ;
+      foaf:mbox <mailto:ddtm-adl@landes.gouv.fr> ;
+      foaf:workplaceHomepage <http://www.landes.gouv.fr/> ;
+      locn:address [
+        a locn:Address ;
+        locn:thoroughfare "351, boulevard Saint-Médard BP 369" ;
+        locn:postName "Mont-de-Marsan Cedex" ;
+        locn:postCode "40012" ;
+        locn:adminUnitL1 "France"
+      ]
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/owner> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/owner>
+  ], [
+    a prov:Attribution ;
+    prov:agent [
+      a foaf:Organization, prov:Agent ;
+      foaf:name "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
+      foaf:mbox <mailto:ddtm-adl@landes.gouv.fr>
+    ] ;
+    dcterms:type <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/owner> ;
+    dcat:hadRole <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/owner>
+  ] .
+
