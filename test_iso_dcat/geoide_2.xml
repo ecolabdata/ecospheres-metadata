@@ -463,6 +463,14 @@ BP 369</gco:CharacterString>
             <gmd:version gco:nilReason="unknown"></gmd:version>
           </gmd:MD_Format>
         </gmd:distributionFormat>
+        <gmd:distributionFormat>
+          <gmd:MD_Format>
+            <gmd:name>
+              <gmx:Anchor xlink:href="https://www.iana.org/assignments/media-types/image/png">png</gmx:Anchor>
+            </gmd:name>
+            <gmd:version gco:nilReason="unknown"></gmd:version>
+          </gmd:MD_Format>
+        </gmd:distributionFormat>
         <gmd:transferOptions>
           <gmd:MD_DigitalTransferOptions>
             <gmd:unitsOfDistribution>
