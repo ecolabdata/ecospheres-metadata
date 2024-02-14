@@ -12,6 +12,8 @@
 @prefix gsp: <http://www.opengis.net/ont/geosparql#> .
 @prefix ns0: <https://www.iana.org/assignments/media-types/application/vnd.geo+> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
 
 geodcatap: a dcterms:Standard .
 <http://publications.europa.eu/resource/authority/language/FRE> a dcterms:LinguisticSystem .
@@ -39,22 +41,8 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
   dcterms:title "Complément - Données non géolocalisées - hiver"@fr ;
   dcterms:description "Complément - Données non géolocalisées - hiver"@fr .
 
-<https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>
-  a foaf:Document ;
-  dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via internet"@fr .
-
-<https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>
-  a foaf:Document ;
-  dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via intranet"@fr .
-
-<https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map>
-  a foaf:Document ;
-  dcterms:title "URL de base des services wms/wfs sur internet"@fr .
-
-<https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map>
-  a foaf:Document ;
-  dcterms:title "URL de base des services wms/wfs sur intranet"@fr .
-
+<http://www.opengeospatial.org/standards/wms> a dcterms:Standard .
+<http://www.opengeospatial.org/standards/wfs> a dcterms:Standard .
 <http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/owner> a dcat:Role .
 []
   foaf:isPrimaryTopicOf [
@@ -168,7 +156,181 @@ geodcatap:spatialResolutionAsScale a dqv:Metric .
       dcterms:description "See the referenced specification"@fr
     ]
   ] ;
-  dcat:landingPage <http://catalogue.geo-ide.developpement-durable.gouv.fr/catalogue/srv/fre/catalog.search#/metadata/fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>, <https://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>, <https://www.landes.gouv.fr/Actions-de-l-Etat/Eau.-Environnement.-Risques-Naturels-et-Technologiques/Eau-et-Peche/Ouvrages-Travaux-Usages/Autorisation-de-prelevement-d-eau>, <http://piece-jointe-carto.developpement-durable.gouv.fr/DEPT040A/SPE/IRRIGATION/L_AUTORISATION_PRELEVEMENT_HIVER_HORS_ZRE_COMPLEMENT_2022_2023.csv>, <https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>, <https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset>, <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map>, <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map> ;
+  dcat:landingPage <http://catalogue.geo-ide.developpement-durable.gouv.fr/catalogue/srv/fre/catalog.search#/metadata/fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993> ;
+  foaf:page <https://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-3efee934-1868-4c12-a21e-8bcd7f9e1993>, <https://www.landes.gouv.fr/Actions-de-l-Etat/Eau.-Environnement.-Risques-Naturels-et-Technologiques/Eau-et-Peche/Ouvrages-Travaux-Usages/Autorisation-de-prelevement-d-eau>, <http://piece-jointe-carto.developpement-durable.gouv.fr/DEPT040A/SPE/IRRIGATION/L_AUTORISATION_PRELEVEMENT_HIVER_HORS_ZRE_COMPLEMENT_2022_2023.csv> ;
+  dcat:distribution [
+    a dcat:Distribution ;
+    dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via internet"@fr ;
+    dcat:accessURL <https://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ], [
+    a dcat:Distribution ;
+    dcterms:title "Téléchargement simple (Atom) du jeu et des documents associés via intranet"@fr ;
+    dcat:accessURL <https://atom.geo-ide.e2.rie.gouv.fr/atomArchive/GetResource?id=90dd3756-8b73-4dbc-a99f-01503b507228&dataType=dataset> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ], [
+    a dcat:Distribution ;
+    dcterms:title "URL de base du service WMS sur internet"@fr ;
+    dcat:accessService [
+      a dcat:DataService ;
+      dcterms:title "URL de base du service WMS sur internet"@fr ;
+      dcat:endpointURL <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs> ;
+      dcat:endpointDescription <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map&service=WMS&request=GetCapabilities> ;
+      dcterms:conformsTo <http://www.opengeospatial.org/standards/wms>
+    ] ;
+    dcat:accessURL <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map&service=WMS&request=GetCapabilities> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ], [
+    a dcat:Distribution ;
+    dcterms:title "URL de base du service WFS sur internet"@fr ;
+    dcat:accessService [
+      a dcat:DataService ;
+      dcterms:title "URL de base du service WFS sur internet"@fr ;
+      dcat:endpointURL <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs> ;
+      dcat:endpointDescription <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map&service=WFS&request=GetCapabilities> ;
+      dcterms:conformsTo <http://www.opengeospatial.org/standards/wfs>
+    ] ;
+    dcat:accessURL <https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.internet.map&service=WFS&request=GetCapabilities> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ], [
+    a dcat:Distribution ;
+    dcterms:title "URL de base du service WMS sur intranet"@fr ;
+    dcat:accessService [
+      a dcat:DataService ;
+      dcterms:title "URL de base du service WMS sur intranet"@fr ;
+      dcat:endpointURL <https://ogc.geo-ide.e2.rie.gouv.fr/wxs> ;
+      dcat:endpointDescription <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map&service=WMS&request=GetCapabilities> ;
+      dcterms:conformsTo <http://www.opengeospatial.org/standards/wms>
+    ] ;
+    dcat:accessURL <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map&service=WMS&request=GetCapabilities> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ], [
+    a dcat:Distribution ;
+    dcterms:title "URL de base du service WFS sur intranet"@fr ;
+    dcat:accessService [
+      a dcat:DataService ;
+      dcterms:title "URL de base du service WFS sur intranet"@fr ;
+      dcat:endpointURL <https://ogc.geo-ide.e2.rie.gouv.fr/wxs> ;
+      dcat:endpointDescription <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map&service=WFS&request=GetCapabilities> ;
+      dcterms:conformsTo <http://www.opengeospatial.org/standards/wfs>
+    ] ;
+    dcat:accessURL <https://ogc.geo-ide.e2.rie.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38022/90dd3756-8b73-4dbc-a99f-01503b507228.intranet.map&service=WFS&request=GetCapabilities> ;
+    dcterms:license [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public."@fr
+    ], [
+      a dcterms:LicenseDocument ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    dcterms:accessRights [
+      a dcterms:RightsStatement ;
+      rdfs:label "Pas de restriction d'accès public selon INSPIRE"@fr
+    ] ;
+    adms:representationTechnique <http://inspire.ec.europa.eu/metadata-codelist/SpatialRepresentationType/vector> ;
+    dcterms:format [
+      a dcterms:MediaType ;
+      rdfs:label "ESRI Shapefile (SHP)"
+    ] ;
+    cnt:characterEncoding "UTF-8"^^xsd:string
+  ] ;
   dcterms:rightsHolder [
     a foaf:Organization, prov:Agent ;
     foaf:name "DDTM 40 (Direction Départementale des Territoires et de la Mer des Landes)"@fr ;
