@@ -6,7 +6,12 @@ load_dotenv()
 
 PATTERN_OPEN_ACCESS = [
     "pas de restriction d'accès public selon inspire",
+    "pas de restriction d’accès public selon inspire",
+    "pas de restriction d’accès publique",
+    "pas de restriction d'accès publique",
     "licence ouverte",
+    "pas de restriction d'accès au public",
+    "directive 2007/2/ce (inspire), pas de restriction d'accès public",
     "open licence",
 ]
 
