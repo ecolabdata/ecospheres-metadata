@@ -13,6 +13,7 @@ PATTERN_OPEN_ACCESS = [
     "pas de restriction d'accès au public",
     "directive 2007/2/ce (inspire), pas de restriction d'accès public",
     "open licence",
+    "ces données sont réutilisables sans restriction par le public",
 ]
 
 
