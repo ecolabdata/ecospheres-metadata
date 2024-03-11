@@ -148,14 +148,12 @@ BP 369</gco:CharacterString>
               <gco:CharacterString>1</gco:CharacterString>
             </gmd:edition>
             <gmd:identifier>
-              <gmd:RS_Identifier>
+              <gmd:MD_Identifier>
                 <gmd:code>
-                  <gco:CharacterString>90dd3756-8b73-4dbc-a99f-01503b507228</gco:CharacterString>
+                  <gmx:Anchor xlink:href="http://descartes-dev.cete-mediterranee.i2/90dd3756-8b73-4dbc-a99f-01503b507228">
+                  </gmx:Anchor>
                 </gmd:code>
-                <gmd:codeSpace>
-                  <gco:CharacterString>http://descartes-dev.cete-mediterranee.i2</gco:CharacterString>
-                </gmd:codeSpace>
-              </gmd:RS_Identifier>
+              </gmd:MD_Identifier>
             </gmd:identifier>
           </gmd:CI_Citation>
         </gmd:citation>
