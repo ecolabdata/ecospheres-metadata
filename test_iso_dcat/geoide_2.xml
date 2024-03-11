@@ -445,17 +445,7 @@ BP 369</gco:CharacterString>
         <gmd:distributionFormat>
           <gmd:MD_Format>
             <gmd:name>
-              <gco:CharacterString>ESRI Shapefile (SHP)</gco:CharacterString>
-            </gmd:name>
-            <gmd:version>
-              <gco:CharacterString />
-            </gmd:version>
-          </gmd:MD_Format>
-        </gmd:distributionFormat>
-        <gmd:distributionFormat>
-          <gmd:MD_Format>
-            <gmd:name>
-              <gmx:Anchor xlink:href="https://www.iana.org/assignments/media-types/application/gml+xml">gml+xml</gmx:Anchor>
+              <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/media-types/application/x-tab">MapInfo Tab</gmx:Anchor>
             </gmd:name>
             <gmd:version gco:nilReason="unknown"></gmd:version>
           </gmd:MD_Format>
@@ -463,7 +453,7 @@ BP 369</gco:CharacterString>
         <gmd:distributionFormat>
           <gmd:MD_Format>
             <gmd:name>
-              <gmx:Anchor xlink:href="https://www.iana.org/assignments/media-types/image/png">png</gmx:Anchor>
+              <gmx:Anchor xlink:href="http://publications.europa.eu/resource/authority/file-type/SHP">ESRI Shapefile</gmx:Anchor>
             </gmd:name>
             <gmd:version gco:nilReason="unknown"></gmd:version>
           </gmd:MD_Format>
